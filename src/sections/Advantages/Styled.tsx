@@ -80,7 +80,9 @@ interface IStyledTextContainer {
     theme?: Theme,
     isImageOnLeft:boolean,
 }
-export const StyledTextContainer = styled(Box)(({ theme, isImageOnLeft }: IStyledTextContainer) => ({
+export const StyledTextContainer = styled(Box, {
+    shouldForwardProp: (prop) => prop !== 'isImageOnLeft'
+})<IStyledTextContainer>(({ theme, isImageOnLeft }) => ({
     order: isImageOnLeft ? 2 : 1,
     [theme!.breakpoints.down('sm')]: {
         order: 2,

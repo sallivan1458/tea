@@ -4,7 +4,7 @@ const moveCircles = keyframes`
     0% {
         transform: rotate(0deg);
     }
-    
+
     50% {
         transform: rotate(180deg);
     }
@@ -21,8 +21,14 @@ interface AnimatedCircleProps {
     positionY: number;
 }
 
-// Создаем стилизованный компонент для самих кругов
-const AnimatedCircle = styled(Box)<AnimatedCircleProps>(({ size, color, duration, positionX, positionY }) => ({
+const AnimatedCircle = styled(Box, {
+    shouldForwardProp: (prop) =>
+        prop !== 'size' &&
+        prop !== 'color' &&
+        prop !== 'duration' &&
+        prop !== 'positionX' &&
+        prop !== 'positionY'
+})<AnimatedCircleProps>(({ size, color, duration, positionX, positionY }) => ({
     position: 'absolute',
     width: size,
     height: size,

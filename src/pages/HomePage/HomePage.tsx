@@ -6,16 +6,18 @@ import QuestionsSection from "../../sections/QuestionsSection.tsx";
 import GoodsSection from "../../sections/Goods/GoodsSection.tsx";
 import ReviewsSection from "../../sections/Reviews/ReviewsSection.tsx";
 import {useAppDispatch} from "../../store/store.ts";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {setActiveSection, setContentReady} from "../../store/gsapSlice.ts";
 import {useRef} from "react";
 import {useGSAP} from "@gsap/react";
-
+import {Container, useMediaQuery} from "@mui/material";
 
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
     const container = useRef(null);
+
+    const isMobile = useMediaQuery('(max-width:900px)');
 
     useGSAP(() => {
         dispatch(setContentReady(true));
@@ -52,7 +54,7 @@ const HomePage = () => {
             dispatch(setContentReady(false));
         };
 
-    }, { scope: container });
+    }, {scope: container});
 
     return (
         <div ref={container} style={{
@@ -62,12 +64,21 @@ const HomePage = () => {
             boxSizing: 'border-box',
         }}>
             <GreetingSection id="greeting"/>
-            <EducationSection id="education"/>
-            <AdvantagesSection id="advantages"/>
-            <GoodsSection id="goods"/>
-            <ReviewsSection id="reviews"/>
-            <QuestionsSection id="questions"/>
-            <ContactsSection id="contacts"/>
+            <Container
+                component="main"
+                maxWidth="lg"
+                sx={{
+                    position: 'relative',
+                    overflowX: isMobile ? 'hidden' : 'visible',
+                }}
+            >
+                <EducationSection id="education"/>
+                <AdvantagesSection id="advantages"/>
+                <GoodsSection id="goods"/>
+                <ReviewsSection id="reviews"/>
+                <QuestionsSection id="questions"/>
+                <ContactsSection id="contacts"/>
+            </Container>
         </div>
     );
 };

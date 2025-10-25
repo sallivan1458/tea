@@ -1,6 +1,6 @@
 import NavigateSection from "components/NavigateSection/NavigateSection.tsx";
 import { Outlet } from "react-router-dom";
-import { Container } from "@mui/material";
+import {Container, useMediaQuery} from "@mui/material";
 import AnimatedBackground from "components/Background/StyledBackground.tsx";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -16,14 +16,19 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 const Layout = () => {
     const smootherWrapperRef = useRef<HTMLDivElement>(null);
     const smootherContentRef = useRef<HTMLDivElement>(null);
+    const isMobile = useMediaQuery('(max-width:900px)');
 
     const isContentReady = useAppSelector(state => state.gsapState.isContentReady);
 
     useGsapSmoother({
-        isContentReady,
+        isContentReady: isContentReady && !isMobile,
         wrapperRef: smootherWrapperRef,
         contentRef: smootherContentRef,
     });
+
+    const mainContent = (
+        <Outlet/>
+    );
 
     return (
         <>
@@ -32,19 +37,15 @@ const Layout = () => {
             <TopDrawer/>
             <NavigateSection/>
 
-            <div id="smooth-wrapper" ref={smootherWrapperRef}>
-                <div id="smooth-content" ref={smootherContentRef}>
-                    <Container
-                        component="main"
-                        maxWidth="lg"
-                        sx={{
-                            position: 'relative',
-                        }}
-                    >
-                        <Outlet/>
-                    </Container>
+            {!isMobile ? (
+                <div id="smooth-wrapper" ref={smootherWrapperRef}>
+                    <div id="smooth-content" ref={smootherContentRef}>
+                        {mainContent}
+                    </div>
                 </div>
-            </div>
+            ) : (
+                mainContent
+            )}
         </>
     );
 };

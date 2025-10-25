@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import {useRef, useEffect, useCallback} from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/store.ts";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -14,7 +14,6 @@ import {
 } from './Styled.tsx';
 import {toggleDrawer} from "../../store/drawerSlice.ts";
 
-// Зарегистрируйте ScrollToPlugin один раз
 gsap.registerPlugin(ScrollToPlugin);
 
 export interface INavigateButton {
@@ -41,11 +40,18 @@ function NavigateSection() {
 
     const indicatorRef = useRef(null); // Ref для нашего индикатора
     const navButtonsRef = useRef<(HTMLButtonElement | null)[]>([]);
+    const ctx = useRef<gsap.Context>();
+
+    useEffect(() => {
+        ctx.current = gsap.context(() => {});
+        return () => ctx.current?.revert();
+    }, []);
 
     useEffect(() => {
         console.log('activeSection: ',activeSection)
     }, [activeSection]);
-    const handleScrollToSection = (targetId: string) => {
+
+    const handleScrollToSection = useCallback((targetId: string) => {
         gsap.to(window, {
             duration: 0.3,
             scrollTo: {
@@ -54,7 +60,7 @@ function NavigateSection() {
             },
             ease: 'power2.out'
         });
-    };
+    }, []);
 
 
 
@@ -65,38 +71,65 @@ function NavigateSection() {
 
 
     useEffect(() => {
-        if (!activeSection) {
-            gsap.set(indicatorRef.current, {
-                x: '30px',
-                width: 0,
-                height: '2px'
-            });
-            return;
-        }
-        if (indicatorRef.current && navButtonsRef.current.length > 0) {
+        if (!ctx.current || !indicatorRef.current) return;
+
+        ctx.current.add(() => {
+            if (!activeSection) {
+                // Плавное скрытие индикатора когда нет активной секции
+                gsap.to(indicatorRef.current, {
+                    duration: 0.3,
+                    width: 0,
+                    opacity: 0,
+                    ease: "power2.out"
+                });
+                return;
+            }
+
             const activeButton = navButtonsRef.current.find(
                 (btn) => btn && btn.id === `nav-${activeSection}`
             );
 
             if (activeButton) {
                 const { offsetLeft, offsetWidth } = activeButton;
+                const targetWidth = offsetWidth * 0.25;
+                const targetX = offsetLeft + (offsetWidth / 2) - (targetWidth / 2);
 
+                // Анимация индикатора
                 gsap.to(indicatorRef.current, {
-                    x:  offsetLeft + (offsetWidth / 2) - (offsetWidth * 0.25 / 2),
-                    width: offsetWidth * 0.25 ,
-                    height:'0.5px',
+                    x: targetX,
+                    width: targetWidth,
+                    opacity: 1,
+                    height: '0.5px',
                     ease: "power2.out",
+                    duration: 0.3,
                     transformOrigin: "center center",
                     onComplete: () => {
+                        // Плавное увеличение высоты после перемещения
                         gsap.to(indicatorRef.current, {
-                            duration: 0.9,
+                            duration: 0.2,
                             height: '2px',
+                            ease: "power1.out"
                         });
                     }
                 });
             }
-        }
-    }, [activeSection])
+        });
+    }, [activeSection]);
+
+
+
+    useEffect(() => {
+        if (!ctx.current || !indicatorRef.current) return;
+
+        ctx.current.add(() => {
+            gsap.set(indicatorRef.current, {
+                x: '30px',
+                width: 0,
+                height: '2px',
+                opacity: 0
+            });
+        });
+    }, []);
 
     return (
         <StyledAppBar position="fixed">
