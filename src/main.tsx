@@ -10,7 +10,7 @@ import './global.css'
 createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
         <ThemeProviderWrapper>
-            <BrowserRouter basename={'tea'}>
+            <BrowserRouter basename={'/tea'}>
                 <App/>
             </BrowserRouter>
         </ThemeProviderWrapper>
