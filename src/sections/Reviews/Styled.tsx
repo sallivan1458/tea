@@ -4,6 +4,7 @@ export const StyledReviewsSection = styled(Box)({
     position: 'relative',
     height: '90vh',
     paddingBottom: '10vh',
+    marginBottom:'150px',
     willChange: 'transform',
     display: 'flex',
     flexDirection: 'column',

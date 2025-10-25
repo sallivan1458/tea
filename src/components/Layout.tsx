@@ -1,6 +1,6 @@
 import NavigateSection from "components/NavigateSection/NavigateSection.tsx";
 import { Outlet } from "react-router-dom";
-import {Container, useMediaQuery} from "@mui/material";
+import { useMediaQuery} from "@mui/material";
 import AnimatedBackground from "components/Background/StyledBackground.tsx";
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,7 +9,7 @@ import { useAppSelector } from "../store/store.ts";
 import { gsap } from 'gsap'
 import CursorFollower from "components/Background/CursorFollower.tsx";
 import TopDrawer from "components/Drawer/Drawer.tsx";
-import { useGsapSmoother } from "../hooks/useGsapSmoother"; // Импорт нашего хука
+import { useGsapSmoother } from "../hooks/useGsapSmoother";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
