@@ -1,0 +1,190 @@
+{
+  "products": [
+    {
+      "_id": "e7e8",
+      "productName": "Smartphone X",
+      "author": "Olga",
+      "price": "13000",
+      "count": "23",
+      "rating": "4.5",
+      "email": "olga@yandex.ru",
+      "category": "smartphone",
+      "isFreeDelivery": true,
+      "isGuarantee": true,
+      "likedBy": [
+        "c69a"
+      ]
+    },
+    {
+      "_id": "a1b2",
+      "productName": "Laptop Pro",
+      "author": "Ivan",
+      "price": "1244",
+      "count": "15",
+      "rating": "4.7",
+      "email": "ivan@gmail.com",
+      "category": "laptop",
+      "isFreeDelivery": true,
+      "isGuarantee": true,
+      "likedBy": []
+    },
+    {
+      "_id": "c3d4",
+      "productName": "Wireless Earbuds",
+      "author": "Anna",
+      "price": "24289",
+      "count": "30",
+      "rating": "4.8",
+      "email": "anna@mail.ru",
+      "category": "accessory",
+      "isFreeDelivery": true,
+      "isGuarantee": true,
+      "likedBy": []
+    },
+    {
+      "_id": "f5g6",
+      "productName": "Smart Watch",
+      "author": "Sergey",
+      "price": "239974",
+      "count": "10",
+      "rating": "4.3",
+      "email": "sergey@yahoo.com",
+      "category": "accessory",
+      "isFreeDelivery": false,
+      "isGuarantee": false,
+      "likedBy": []
+    },
+    {
+      "_id": "h7i8",
+      "productName": "iPhone",
+      "author": "Maria",
+      "price": "42000",
+      "count": "25",
+      "rating": "4.9",
+      "email": "maria@outlook.com",
+      "category": "smartphone",
+      "isFreeDelivery": false,
+      "isGuarantee": true,
+      "likedBy": []
+    },
+    {
+      "_id": "j9k0",
+      "productName": "Gaming Console",
+      "author": "Dmitry",
+      "price": "54300",
+      "count": "18",
+      "rating": "4.6",
+      "email": "dmitry@hotmail.com",
+      "category": "laptop",
+      "isFreeDelivery": true,
+      "isGuarantee": false,
+      "likedBy": []
+    },
+    {
+      "_id": "l1m2",
+      "productName": "Bluetooth Speaker",
+      "author": "Elena",
+      "price": "19800",
+      "count": "22",
+      "rating": "4.4",
+      "email": "elena@icloud.com",
+      "category": "accessory",
+      "isFreeDelivery": false,
+      "isGuarantee": false,
+      "likedBy": [
+        "e6b4"
+      ]
+    },
+    {
+      "_id": "n3o4",
+      "productName": "Tablet Mini",
+      "author": "Alexey",
+      "price": "23455",
+      "count": "12",
+      "rating": "4.2",
+      "email": "alexey@protonmail.com",
+      "category": "laptop",
+      "isFreeDelivery": true,
+      "isGuarantee": true,
+      "likedBy": [
+        "c69a"
+      ]
+    },
+    {
+      "_id": "p5q6",
+      "productName": "Drone Flyer",
+      "author": "Tatiana",
+      "price": "23333",
+      "count": "28",
+      "rating": "4.7",
+      "email": "tatiana@zoho.com",
+      "category": "accessory",
+      "isFreeDelivery": false,
+      "isGuarantee": true,
+      "likedBy": [
+        "c69a",
+        "e6b4"
+      ]
+    },
+    {
+      "_id": "r7s8",
+      "productName": "VR Headset",
+      "author": "Vladimir",
+      "price": "90000",
+      "count": "20",
+      "rating": "4.5",
+      "email": "vladimir@yandex.ru",
+      "category": "accessory",
+      "isFreeDelivery": true,
+      "isGuarantee": false,
+      "likedBy": []
+    },
+    {
+      "_id": "3785",
+      "productName": "Gnomia Bombarda",
+      "author": "gnidik",
+      "price": "123213",
+      "count": "666",
+      "rating": "0.0",
+      "email": "gdida@yandex.ru",
+      "category": "accessory",
+      "isFreeDelivery": true,
+      "isGuarantee": false,
+      "likedBy": []
+    }
+  ],
+  "users": [
+    {
+      "_id": "c69a",
+      "name": "gnidik",
+      "password": "1234",
+      "email": "gdida@yandex.ru",
+      "favoriteProducts": [
+        "p5q6",
+        "f86d",
+        "n3o4",
+        "e7e8"
+      ],
+      "myProducts": []
+    },
+    {
+      "_id": "910c",
+      "name": "paxychka",
+      "password": "12345",
+      "email": "paxychka@mail.com",
+      "favoriteProducts": [],
+      "myProducts": []
+    },
+    {
+      "_id": "ObjectId('e6b4')",
+      "name": "g",
+      "password": "g",
+      "email": "g",
+      "favoriteProducts": [
+        "l1m2",
+        "p5q6"
+      ],
+      "myProducts": []
+    }
+  ]
+}
