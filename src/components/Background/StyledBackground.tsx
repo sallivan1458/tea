@@ -41,7 +41,7 @@ const AnimatedCircle = styled(Box, {
     transformOrigin: 'center center',
 }));
 
-const AnimatedBackground = styled(Box)(() => ({
+export const AnimatedBackground = styled(Box)(() => ({
     position: 'fixed',
     top: 0,
     left: 0,

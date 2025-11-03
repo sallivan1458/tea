@@ -4,6 +4,7 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import modalWindowReducer from "./ModalWindows.ts";
 import themeReducer from './ThemeSlice';
+import deviceStateReducer from './DeviceStateSlice.ts';
 import gsapReducer from './gsapSlice';
 import drawerReducer from './drawerSlice.ts';
 
@@ -13,6 +14,7 @@ export const store = configureStore({
     reducer: {
         modalWindowSlice: modalWindowReducer,
         theme: themeReducer,
+        device: deviceStateReducer,
         gsapState: gsapReducer,
         drawer: drawerReducer,
     },

@@ -92,6 +92,28 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                             fontSize: '1.1rem',
                         },
                     },
+                    body1: {
+                        fontWeight: 400,
+                        fontSize: '1.4rem',
+                        letterSpacing: '0.04em',
+                        '@media (max-width:900px)': {
+                            fontSize: '1.2rem',
+                        },
+                        '@media (max-width:600px)': {
+                            fontSize: '0.8rem',
+                        },
+                    },
+                    body2: {
+                        fontWeight: 400,
+                        fontSize: '1rem',
+                        letterSpacing: '0.04em',
+                        '@media (max-width:900px)': {
+                            fontSize: '0.9rem',
+                        },
+                        '@media (max-width:600px)': {
+                            fontSize: '0.8rem',
+                        },
+                    },
                 },
                 palette: {
                     mode,

@@ -36,6 +36,8 @@ const EducationSection = ({id}:IEducationSectionProps) => {
         {image: China_University, text: 'Также владею и Китайским языком на уровне Escape 4', title:'Ningxia University'}
     ]
 
+    const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
+
     const getAnimationDirection = useCallback((index: number) => {
         if (!isMobile) return -100; // На десктопе все блоки движутся одинаково
 
@@ -54,7 +56,7 @@ const EducationSection = ({id}:IEducationSectionProps) => {
                 trigger: educationSection.current,
                 start: '-20% center',
                 end: '-5% center',
-                scrub: true,
+                scrub: !isTouchDevice,
             }
         });
 
@@ -64,19 +66,21 @@ const EducationSection = ({id}:IEducationSectionProps) => {
         educationBlocks.forEach((block, index) => {
             const direction = getAnimationDirection(index);
 
-            gsap.fromTo(block.current, {
-                opacity: 1,
-                x: 0
-            }, {
-                opacity: 0,
-                x: -direction,
-                scrollTrigger: {
-                    trigger: educationSection.current,
-                    start: `center ${10 + index * 6}%`,
-                    end: `center ${-10 + index * 5}%`,
-                    scrub: true,
-                }
-            });
+            if(!isTouchDevice) {
+                gsap.fromTo(block.current, {
+                    opacity: 1,
+                    x: 0
+                }, {
+                    opacity: 0,
+                    x: -direction,
+                    scrollTrigger: {
+                        trigger: educationSection.current,
+                        start: `center ${10 + index * 6}%`,
+                        end: `center ${-10 + index * 5}%`,
+                        scrub: !isTouchDevice,
+                    }
+                });
+            }
         });
 
         // Анимация появления блоков
@@ -93,7 +97,7 @@ const EducationSection = ({id}:IEducationSectionProps) => {
                     trigger: educationSection.current,
                     start: `-${20 + index * 6}% center`,
                     end: `-${5 + index * 5}% center`,
-                    scrub: true,
+                    scrub: !isTouchDevice,
                 }
             });
         });

@@ -19,7 +19,7 @@ const GreetingSection = ({id}: IGreetingSectionProps) => {
     const tieferliedRef = useRef(null);
 
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isWidthMin600 = useMediaQuery(theme.breakpoints.down('sm'));
 
 
     return (
@@ -40,7 +40,7 @@ const GreetingSection = ({id}: IGreetingSectionProps) => {
                         ref={headingRef}
                         variant="h1"
                     >
-                        {!isMobile
+                        {!isWidthMin600
                             ? <>
                                 <span>TIEFERLIED</span>
                                 <span>ENGLISH ACADEMY</span>

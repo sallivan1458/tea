@@ -11,11 +11,10 @@ import {
     ScrollButton,
     ScrollControls
 } from './Styled';
-import {CardGoods, CardGoodsProps} from "components/CardGoods.tsx";
+import {CardGoods} from "components/CardGoods.tsx";
 import {ChevronLeft, ChevronRight} from '@mui/icons-material';
-import standartTEA from './../../assets/standardTEA.jpg'
-import personalTEA from './../../assets/personalTEA.jpg'
-import examTEA from './../../assets/examTEA.jpg'
+import {goods} from "../../description.ts";
+
 
 
 interface IEducationSectionProps {
@@ -34,29 +33,11 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
 
     const theme = useTheme();
     const isMdScreen = useMediaQuery(theme.breakpoints.up('md'));
+    const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
+
 
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const goods: CardGoodsProps[] = [
-        {
-            price: 1500,
-            text: 'Индивидуальное занятие подобранное под ваш уровень и ваши задачи',
-            title: 'StandartTEA',
-            image: standartTEA
-        },
-        {
-            price: 2000,
-            text: 'Индивидуально составленое занятие на вашу тему и специально подобранное под ваш уровень',
-            title: 'PersonalTEA',
-            image: personalTEA
-        },
-        {
-            price: 1200,
-            text: 'Занятие, после которого у вас будет увернность для сдачи ОГЭ ЕГЭ на 90+ ',
-            title: 'ExamTEA',
-            image: examTEA
-        }
-    ]
 
     const scrollLeft = () => {
         setActiveIndex(prevIndex => Math.max(prevIndex - 1, 0));
@@ -98,27 +79,30 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
                 trigger: educationSection.current,
                 start: '-20% center',
                 end: '-5% center',
-                scrub: true,
+                scrub: !isTouchDevice,
             }
         });
 
         educationBlocks.forEach((block, index) => {
-            gsap.fromTo(block.current, {
-                opacity: 1,
-                x: 0
-            }, {
-                opacity: 0,
-                x: -100,
-                scrollTrigger: {
-                    trigger: educationSection.current,
-                    start: `center ${10 + index * 3}%`,
-                    end: `center ${-10 + index * 2}%`,
-                    scrub: true,
-                }
-            });
+            if (!isTouchDevice) {
+                gsap.fromTo(block.current, {
+                    opacity: 1,
+                    x: 0
+                }, {
+                    opacity: 0,
+                    x: -100,
+                    scrollTrigger: {
+                        trigger: educationSection.current,
+                        start: `center ${10 + index * 3}%`,
+                        end: `center ${-10 + index * 2}%`,
+                        scrub: !isTouchDevice,
+                    }
+                });
+            }
         });
 
         educationBlocks.forEach((block, index) => {
+
             gsap.fromTo(block.current, {
                 opacity: 0,
                 x: 100
@@ -129,7 +113,7 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
                     trigger: educationSection.current,
                     start: `-${20 + index * 3}% center`,
                     end: `-${5 + index * 2}% center`,
-                    scrub: true,
+                    scrub: !isTouchDevice,
                 }
             });
         });

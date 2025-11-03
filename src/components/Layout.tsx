@@ -1,27 +1,27 @@
 import NavigateSection from "components/NavigateSection/NavigateSection.tsx";
-import { Outlet } from "react-router-dom";
-import { useMediaQuery} from "@mui/material";
-import AnimatedBackground from "components/Background/StyledBackground.tsx";
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useRef } from "react";
-import { useAppSelector } from "../store/store.ts";
-import { gsap } from 'gsap'
+import {Outlet} from "react-router-dom";
+import {useMediaQuery} from "@mui/material";
+import {ScrollSmoother} from 'gsap/ScrollSmoother';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {useRef} from "react";
+import {useAppSelector} from "../store/store.ts";
+import {gsap} from 'gsap'
 import CursorFollower from "components/Background/CursorFollower.tsx";
 import TopDrawer from "components/Drawer/Drawer.tsx";
-import { useGsapSmoother } from "../hooks/useGsapSmoother";
+import {useGsapSmoother} from "../hooks/useGsapSmoother";
+import BackgroundWithCircles, {AnimatedBackground} from "components/Background/StyledBackground.tsx";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 const Layout = () => {
     const smootherWrapperRef = useRef<HTMLDivElement>(null);
     const smootherContentRef = useRef<HTMLDivElement>(null);
-    const isMobile = useMediaQuery('(max-width:900px)');
+    const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
 
     const isContentReady = useAppSelector(state => state.gsapState.isContentReady);
 
     useGsapSmoother({
-        isContentReady: isContentReady && !isMobile,
+        isContentReady: isContentReady && !isTouchDevice,
         wrapperRef: smootherWrapperRef,
         contentRef: smootherContentRef,
     });
@@ -32,12 +32,14 @@ const Layout = () => {
 
     return (
         <>
-            <AnimatedBackground/>
-            <CursorFollower/>
+            {!isTouchDevice
+                ? <BackgroundWithCircles/>
+                : <AnimatedBackground/>}
+            {!isTouchDevice && <CursorFollower/>}
             <TopDrawer/>
             <NavigateSection/>
 
-            {!isMobile ? (
+            {!isTouchDevice ? (
                 <div id="smooth-wrapper" ref={smootherWrapperRef}>
                     <div id="smooth-content" ref={smootherContentRef}>
                         {mainContent}

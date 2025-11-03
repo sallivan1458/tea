@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import {useRef} from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,6 +17,7 @@ import indApprJPG from '../../assets/IndividualApproach.jpg';
 import platformJPG from '../../assets/platform.jpg';
 import speakingJPG from '../../assets/conversationalPractice.jpg';
 import {Box} from "@mui/material";
+import {useAppSelector} from "../../store/store.ts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,6 +54,8 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
     const advantagesTitle = useRef<HTMLHeadingElement>(null);
     const advantageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+    const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice');
+
     useGSAP(() => {
         gsap.fromTo(advantagesTitle.current, {
             opacity: 0,
@@ -66,7 +69,7 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                 trigger: advantagesSection.current,
                 start: 'top 80%',
                 end: 'top 60%',
-                scrub: true,
+                scrub: !isTouchDevice,
             }
         });
 
@@ -88,7 +91,7 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                         trigger: imageElement,
                         start: 'top 85%',
                         end: 'top 55%',
-                        scrub: true,
+                        scrub: !isTouchDevice,
                     }
                 });
 
@@ -101,12 +104,13 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                     x: 0,
                     y: 0,
                     duration: 1.2,
+                    delay: 0.4,
                     ease: "power2.out",
                     scrollTrigger: {
-                        trigger: textElement,
+                        trigger: imageElement,
                         start: 'top 85%',
-                        end: 'top 45%',
-                        scrub: true,
+                        end: 'top 55%',
+                        scrub: !isTouchDevice,
                     }
                 });
             }

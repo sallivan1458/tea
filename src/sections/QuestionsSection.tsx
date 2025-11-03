@@ -2,7 +2,9 @@ import {Typography, Box} from '@mui/material';
 import {useRef} from 'react';
 import gsap from 'gsap';
 import {useGSAP} from "@gsap/react";
-import {CardQuestion, QuestionCardProps} from "components/CardQuestion.tsx";
+import {CardQuestion} from "components/CardQuestion.tsx";
+import {useAppSelector} from "../store/store.ts";
+import {questions} from "../description.ts";
 
 
 interface IQuestionsSectionProps {
@@ -14,15 +16,9 @@ const QuestionsSection = ({id}:IQuestionsSectionProps) => {
     const questionsTitle = useRef(null);
     const questionCards = useRef<(HTMLDivElement | null)[]>([]);
 
-    const questions: QuestionCardProps[] = [
-        {title: '01 Сколько длиться одно занятие?', text: 'Есть всего два формата 1ч и 1.5ч'},
-        {title: '02 Что делать если я хочу перенести урок?', text: 'Для переноса или отмены урока нужно сообщить за 24 часа, в иных случаях отмена будет платной'},
-        {title: '03 Есть ли скидки при оплате пакета занятий?', text: 'Есть скидка в 5%'},
-        {title: '04 Когда я заговорю по английски?', text: 'Всё зависит от вашей заинтересованности, вы можете свободно начаться общаться как после 3 месяцев, так и после года'},
-        {title: '05 Как будут проходить уроки?', text: 'Уроки проходят на удобной платформе Edvide, на которой можно как сделать домашнее задание, так и заглянуть в словарик и повторить слова'},
-        {title: '05 Как будут проходить уроки?', text: 'Уроки проходят на удобной платформе Edvide, на которой можно как сделать домашнее задание, так и заглянуть в словарик и повторить слова'},
-        {title: '05 Как будут проходить уроки?', text: 'Уроки проходят на удобной платформе Edvide, на которой можно как сделать домашнее задание, так и заглянуть в словарик и повторить слова'},
-    ];
+    const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice')
+
+
 
     useGSAP(() => {
         // Анимация заголовка
@@ -36,7 +32,7 @@ const QuestionsSection = ({id}:IQuestionsSectionProps) => {
                 trigger: questionsSection.current,
                 start: 'top 80%',
                 end: 'top 75%',
-                scrub: true,
+                scrub: !isTouchDevice,
             }
         });
 
@@ -46,18 +42,20 @@ const QuestionsSection = ({id}:IQuestionsSectionProps) => {
 
             gsap.fromTo(card, {
                 opacity: 0,
-                y: 30,
-                x: index % 2 === 0 ? -20 : 20
+                y: 60,
+                x: index % 2 === 0 ? -30 : 30
             }, {
                 opacity: 1,
                 y: 0,
                 x: 0,
+                duration: 0.8,
+                delay: index * 0.1,
+                ease: "power2.out",
                 scrollTrigger: {
                     trigger: card,
-                    start: 'top 90%',
-                    end: 'top 80%',
-                    toggleActions: 'play none none none',
-                    scrub: true
+                    start: 'top 85%',
+                    end: 'top 50%',
+                    scrub:!isTouchDevice
                 }
             });
         });

@@ -11,7 +11,6 @@ const StyledCircle = styled(Box)(() => ({
     borderRadius: '50%',
     zIndex: 0,
     background: `radial-gradient(rgba(25, 118, 208, 0.12) 0%, transparent 50%) no-repeat`,
-    // backdropFilter: 'blur(100px)',
     transition: 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)',
     pointerEvents: 'none',
 }));

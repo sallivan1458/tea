@@ -51,6 +51,8 @@ export const StyledContentBox = styled(Box)({
 });
 
 export const StyledTypography = styled(Typography)({
+    position:'absolute',
+    bottom:'10%',
     display: 'flex',
     height: '100%',
     justifyContent: 'flex-end',

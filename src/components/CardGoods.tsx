@@ -1,22 +1,24 @@
 import {useState} from 'react';
-import {Typography, Box, Theme, IconButton} from '@mui/material';
-import {alpha} from "@mui/material/styles";
+import {Typography, Box, IconButton, useMediaQuery} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 export interface CardGoodsProps {
     image?: string;
-    text?: string;
+    text?: string[];
     title?: string;
     price?: number;
 }
 
 export const CardGoods = ({
                               title = 'Standart',
-                              text = 'индивидуальный подход',
+                              text = ['индивидуальный подход'],
                               image = '',
                               price = 1500,
                           }: CardGoodsProps) => {
     const [expanded, setExpanded] = useState(false);
+
+    const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
+    const isWidth900_1000 = useMediaQuery('(max-width:1000px) and (min-width:900px)');
 
     const toggleExpanded = () => {
         setExpanded(!expanded);
@@ -25,21 +27,23 @@ export const CardGoods = ({
     return (
         <Box
             onClick={toggleExpanded}
-            sx={(theme: Theme) => ({
+            sx={{
                 cursor: 'pointer',
-                height: '300px',
+                height: !isTouchDevice ? '500px' : '400px',
                 minWidth: '240px',
-                backgroundColor: 'rgba(0,0,0,0.4)',
                 borderRadius: '16px',
                 position: 'relative',
                 overflow: 'hidden',
                 transition: '0.4s ease-in-out',
                 display: 'flex',
                 flexDirection: 'column',
-                '&:hover': {
-                    boxShadow: `0px 0px 6px ${alpha(theme.palette.primary.main, 0.8)}`,
-                },
-            })}
+                ...(!isTouchDevice && {
+                    '&:hover': {
+                        transform: 'scale(0.98)',
+                        transition: '0.6s',
+                    },
+                }),
+            }}
         >
             {/* Фоновое изображение с круговым размытием */}
             {image && (
@@ -93,7 +97,7 @@ export const CardGoods = ({
             >
                 {/* Заголовок */}
                 <Typography
-                    variant="h5"
+                    variant={isWidth900_1000? 'h6': 'h5'}
                     sx={{
                         fontWeight: 'bold',
                         color: 'white',
@@ -108,14 +112,15 @@ export const CardGoods = ({
 
                 {/* Кнопка плюсика */}
                 <IconButton
+                    size={'small'}
                     disableRipple
                     sx={{
                         color: 'white',
-                        backgroundColor: 'rgb(38,38,38)',
+                        backgroundColor: 'rgb(18,141,223)',
                         transform: `${!expanded ? 'rotate(0deg)' : `rotate(45deg)`}`,
                         transition: 'transform 0.5s ease-in-out 0.2s',
                         '&:hover': {
-                            backgroundColor: 'rgb(48,48,48)',
+                            backgroundColor: 'rgb(14,66,124)',
                         },
                     }}
                 >
@@ -134,7 +139,7 @@ export const CardGoods = ({
                     alignItems: 'center',
                     gap: '16px',
                     position: 'relative',
-                    zIndex: 3,
+                    zIndex: 20,
                     marginTop: '-12px',
                 }}
             >
@@ -171,7 +176,7 @@ export const CardGoods = ({
                         position: 'relative',
                         width: '100%',
                         height: '100%',
-                        padding: '32px',
+                        padding: '12px',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
@@ -181,12 +186,37 @@ export const CardGoods = ({
                     <Typography
                         variant="body1"
                         sx={{
-                            textAlign: 'justify',
+                            textAlign: 'left',
                             color: 'white',
-                            mt: 6,
+                            mt: 0,
                         }}
                     >
-                        {text}
+                        {text.map((item, index) => (
+                            <Box
+                                key={index}
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: 2,
+                                    padding: '5px 0',
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        width: '6px',
+                                        height: '6px',
+                                        backgroundColor: 'primary.main',
+                                        borderRadius: '50%',
+                                        flexShrink: 0,
+                                    }}
+                                />
+                                <Typography
+                                    variant="body2"
+                                >
+                                    {item}
+                                </Typography>
+                            </Box>
+                        ))}
                     </Typography>
                 </Box>
             </Box>

@@ -94,7 +94,7 @@ export const StyledBlockTitle = styled(Typography)({
 });
 
 export const StyledBlockDescription = styled(Typography)(({ theme } : {theme: Theme}) => ({
-    textAlign: 'justify',
+    textAlign: 'left',
     [theme.breakpoints.down('sm')]: {
         textAlign: 'left',
     },

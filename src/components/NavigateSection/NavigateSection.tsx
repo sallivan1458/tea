@@ -47,9 +47,6 @@ function NavigateSection() {
         return () => ctx.current?.revert();
     }, []);
 
-    useEffect(() => {
-        console.log('activeSection: ',activeSection)
-    }, [activeSection]);
 
     const handleScrollToSection = useCallback((targetId: string) => {
         gsap.to(window, {
@@ -165,7 +162,7 @@ function NavigateSection() {
                                             left: 0,
                                             backgroundColor: 'rgba(255,255,255,0.8)',
                                             boxShadow: '0 -1px 8px 2px rgba(255, 255, 255, 1)',
-                                            borderRadius: '2px',
+                                            borderRadius: '8px',
                                             pointerEvents: 'none',
                                             transition:'width 0.3s height 0.3s'
                                         }}

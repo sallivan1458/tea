@@ -38,7 +38,7 @@ export const EmblaSlideContent = styled(Box)(() => ({
     height: 'var(--slide-height)',
     width: '100%',
     boxSizing:'border-box',
-    overflow:'hidden',
+    overflowY:'hidden',
 }));
 
 

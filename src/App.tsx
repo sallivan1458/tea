@@ -2,17 +2,25 @@ import {Route, Routes} from "react-router-dom";
 
 // import RequireAuth from "./hoc/RequireAuth.tsx";
 import Layout from "components/Layout.tsx";
-import { useAppSelector} from "./store/store.ts";
+import {useAppDispatch, useAppSelector} from "./store/store.ts";
 import {lazy, Suspense, useEffect} from "react";
 import ModalErrorWindow from "components/ModalErrorWindow/ModalErrorWindow.tsx";
-import { CircularProgress} from "@mui/material";
 import {gsap} from 'gsap'
+import {setDeviceType} from "./store/DeviceStateSlice.ts";
+import {useMediaQuery} from "@mui/material";
 
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage.tsx'));
 
 
 function App() {
+
+    const dispatch = useAppDispatch();
+    const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
+
+    useEffect(() => {
+        dispatch(setDeviceType(isTouchDevice ? 'touchDevice' : 'laptop'));
+    }, [dispatch, isTouchDevice]);
 
     useEffect(() => {
         gsap.config({
@@ -27,11 +35,11 @@ function App() {
 
     return (
         <>
-        <Routes>
-                <Route path={'/'} element={<Layout/>} >
+            <Routes>
+                <Route path={'/'} element={<Layout/>}>
 
                     <Route path={'/'} element={
-                        <Suspense fallback={<CircularProgress/>}>
+                        <Suspense fallback={<h1></h1>}>
                             <HomePage/>
                         </Suspense>
                     }/>
