@@ -19,7 +19,7 @@ export const StyledBoxContainer = styled(Box)(({ theme }) => ({
     margin: '0 auto',
     padding: theme.spacing(0, 3),
     [theme.breakpoints.down('md')]: {
-        marginLeft: 'auto',
+        // marginLeft: 'auto',
         marginRight: 0,
     },
 }));

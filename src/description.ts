@@ -63,35 +63,35 @@ export const questions: QuestionCardProps[] = [
 export const reviews: IReview[] = [
     {
         id: '1',
-        title: 'Dima Zvedov',
+        title: 'Dima',
         description: 'Стандартный урок английского языка, охватывающий все аспекты: грамматику, лексику, аудирование и разговорную практику.',
         image: DimaZvedovPNG,
         date: '1755873602612'
     },
     {
         id: '2',
-        title: 'Mihail Bardash',
+        title: 'Mihail',
         description: 'Персональный урок, разработанный специально под ваши цели и потребности. Индивидуальный подход и фокус на конкретных темах.',
         image: MihailBardashPNG,
         date: '1755873602612'
     },
     {
         id: '3',
-        title: 'Vladimir Putin',
+        title: 'Vladimir',
         description: 'Специализированная подготовка к экзаменам ОГЭ, ЕГЭ, IELTS или TOEFL. Прорабатываем экзаменационные стратегии и типовые задания.',
         image: VladimirPutinPNG,
         date: '1755873602612'
     }, {
         id: '4',
-        title: 'EII BOGDAN',
-        description: 'ZZZZ ZZZZ ZZZZ я вообще богдан и я богом дан и я английзсиий знаю лучше всех аааауууэээ вот еще текст чтобы было большое описание и вот как оно выглядит  ',
+        title: 'Bogdan',
+        description: 'Описание совершенного урока номер 4, не очень большое колличество текста',
         image: bogdanJPG,
         date: '1755873602612'
     },
     {
         id: '5',
-        title: 'EII BOGDAN',
-        description: '555 555 5555 ZZZZ ZZZZ ZZZZ я вообще богдан и я богом дан и я английзсиий знаю лучше всех аааауууэээ вот еще текст чтобы было большое описание и вот как оно выглядит  ',
+        title: 'Kirill',
+        description: 'Описание совершенного урока номер 5, не очень большое колличество текста',
         image: VladimirPutinPNG,
         date: '1755873602612'
     }

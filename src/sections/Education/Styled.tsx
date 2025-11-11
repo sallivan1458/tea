@@ -4,18 +4,18 @@ export const EducationContainer = styled(Box)({
     position: 'relative',
     willChange: 'transform',
     marginBottom: '20vh',
-    '&::before': {
-        content: '""',
-        position: 'fixed',
-        top: 0,
-        left: '50%',
-        transform:'translateX(-50%)',
-        width: '100vw',
-        height: '100vh',
-        background: 'linear-gradient(to bottom, #010101 0%, transparent 100%)',
-        zIndex: -1,
-        pointerEvents: 'none',
-    },
+    // '&::before': {
+    //     content: '""',
+    //     position: 'fixed',
+    //     top: 0,
+    //     left: '50%',
+    //     transform:'translateX(-50%)',
+    //     width: '100vw',
+    //     height: '100vh',
+    //     background: 'linear-gradient(to bottom, #010101 0%, transparent 100%)',
+    //     zIndex: -1,
+    //     pointerEvents: 'none',
+    // },
 });
 
 export const EducationTitle = styled(Typography)({

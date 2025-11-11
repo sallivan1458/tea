@@ -24,7 +24,8 @@ export interface INavigateButton {
 function NavigateSection() {
     const buttons: INavigateButton[] = [
         { title: 'TEA', targetId: 'greeting' },
-        { title: 'EDUCATION', targetId: 'education' },
+        { title: 'ABOUT ME', targetId: 'aboutMe' },
+        // { title: 'EDUCATION', targetId: 'education' },
         { title: 'ADVANTAGES', targetId: 'advantages' },
         { title: 'GOODS', targetId: 'goods' },
         { title: 'REVIEWS', targetId: 'reviews' },
@@ -174,6 +175,9 @@ function NavigateSection() {
                         ) : (
                             <>
                                 <Box sx={{
+                                    // position: 'fixed',
+                                    // top:'20px',
+                                    // right:'20px',
                                     flexGrow: 1,
                                     zIndex:'20 !important'
                                 }}>

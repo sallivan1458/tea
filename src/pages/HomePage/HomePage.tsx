@@ -1,5 +1,5 @@
 import GreetingSection from "../../sections/Greeting/GreetingSection.tsx";
-import EducationSection from "../../sections/Education/EducationSection.tsx";
+// import EducationSection from "../../sections/Education/EducationSection.tsx";
 import AdvantagesSection from "../../sections/Advantages/AdvantagesSection.tsx";
 import ContactsSection from "../../sections/ContactsSection.tsx";
 import QuestionsSection from "../../sections/QuestionsSection.tsx";
@@ -10,21 +10,26 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {setActiveSection, setContentReady} from "../../store/gsapSlice.ts";
 import {useRef} from "react";
 import {useGSAP} from "@gsap/react";
-import {Container, useMediaQuery} from "@mui/material";
+import {Container} from "@mui/material";
+import AboutMeSection from "../../sections/AboutMeSection/AboutMeSection.tsx";
 
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
     const container = useRef(null);
 
-    const isMobile = useMediaQuery('(max-width:900px)');
-
     useGSAP(() => {
         dispatch(setContentReady(true));
 
         const sections = [
-            'greeting', 'education', 'advantages',
-            'goods', 'reviews', 'questions', 'contacts'
+            'greeting',
+            'aboutMe',
+            // 'education',
+            'advantages',
+            'goods',
+            'reviews',
+            'questions',
+            'contacts'
         ];
 
         sections.forEach(id => {
@@ -69,10 +74,11 @@ const HomePage = () => {
                 maxWidth="lg"
                 sx={{
                     position: 'relative',
-                    overflowX: isMobile ? 'hidden' : 'visible',
+                    // overflowX: isMobile ? 'hidden' : 'visible',
                 }}
             >
-                <EducationSection id="education"/>
+                <AboutMeSection id={"aboutMe"}/>
+                {/*<EducationSection id="education"/>*/}
                 <AdvantagesSection id="advantages"/>
                 <GoodsSection id="goods"/>
                 <ReviewsSection id="reviews"/>

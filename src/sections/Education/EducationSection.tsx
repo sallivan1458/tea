@@ -13,6 +13,7 @@ import {
     EducationContent,
     EducationBlock
 } from './Styled';
+import {useAppSelector} from "../../store/store.ts";
 
 interface IEducationSectionProps {
     id:string
@@ -36,7 +37,7 @@ const EducationSection = ({id}:IEducationSectionProps) => {
         {image: China_University, text: 'Также владею и Китайским языком на уровне Escape 4', title:'Ningxia University'}
     ]
 
-    const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
+    const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice');
 
     const getAnimationDirection = useCallback((index: number) => {
         if (!isMobile) return -100; // На десктопе все блоки движутся одинаково
