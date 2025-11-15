@@ -48,7 +48,7 @@ export const AnimatedBackground = styled(Box)(() => ({
     right: 0,
     bottom: 0,
     background: 'linear-gradient(135deg, #070310 0%, #150a30 50%, #090515 100%)',
-    zIndex: -1,
+    zIndex: -10,
     overflow: 'hidden',
 }));
 

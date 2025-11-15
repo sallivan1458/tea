@@ -14,9 +14,9 @@ import {
 } from './Styled';
 
 import indApprJPG from '../../assets/IndividualApproach.jpg';
-import platformJPG from '../../assets/platform.jpg';
-import speakingJPG from '../../assets/conversationalPractice.jpg';
-import {Box} from "@mui/material";
+import platform from '../../assets/platform.webp';
+import speaking from '../../assets/conversationalPractice.webp';
+import {Box, useMediaQuery} from "@mui/material";
 import {useAppSelector} from "../../store/store.ts";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,12 +38,12 @@ const advantagesBlocks: IAdvantageBlock[] = [
         description: 'Индивидуальные уроки для каждого ученика специально подобранные под его уровень'
     },
     {
-        picture: speakingJPG,
+        picture: speaking,
         title: '02 Много разговорной практики',
         description: 'Уже за первую неделю придет понимание английского языка и уже через месяц вы сможете на нем говорить'
     },
     {
-        picture: platformJPG,
+        picture: platform,
         title: '03 Удобная платформа',
         description: 'Удобнейшая платформа, на которой можно выполнять как интерактивные задания, так и запоминать слова'
     },
@@ -55,6 +55,7 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
     const advantageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice');
+    const isMin600Width = useMediaQuery('(min-width:600px)');
 
     useGSAP(() => {
         gsap.fromTo(advantagesTitle.current, {
@@ -89,7 +90,7 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: imageElement,
-                        start: 'top 85%',
+                        start: `${!isMin600Width? 'top 40%' : 'top 85%'}`,
                         end: 'top 55%',
                         scrub: !isTouchDevice,
                     }
@@ -108,7 +109,7 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: imageElement,
-                        start: 'top 85%',
+                        start: `${!isMin600Width? 'top 40%' : 'top 85%'}`,
                         end: 'top 55%',
                         scrub: !isTouchDevice,
                     }

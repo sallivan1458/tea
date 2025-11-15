@@ -5,19 +5,21 @@ import ContactsSection from "../../sections/ContactsSection.tsx";
 import QuestionsSection from "../../sections/QuestionsSection.tsx";
 import GoodsSection from "../../sections/Goods/GoodsSection.tsx";
 import ReviewsSection from "../../sections/Reviews/ReviewsSection.tsx";
-import {useAppDispatch} from "../../store/store.ts";
+import {useAppDispatch, useAppSelector} from "../../store/store.ts";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {setActiveSection, setContentReady} from "../../store/gsapSlice.ts";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import {useGSAP} from "@gsap/react";
 import {Container} from "@mui/material";
 import AboutMeSection from "../../sections/AboutMeSection/AboutMeSection.tsx";
+import {setLoading} from "../../store/LoadingState.ts";
 
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
     const container = useRef(null);
 
+    const isTouchDevice = useAppSelector(state => state.device.deviceType === "touchDevice");
     useGSAP(() => {
         dispatch(setContentReady(true));
 
@@ -61,11 +63,14 @@ const HomePage = () => {
 
     }, {scope: container});
 
+    useEffect(() => {
+        dispatch(setLoading('ready'));
+    }, [dispatch]);
+
     return (
         <div ref={container} style={{
             padding: 0,
             margin: 0,
-            minHeight: '250vh',
             boxSizing: 'border-box',
         }}>
             <GreetingSection id="greeting"/>
@@ -74,7 +79,7 @@ const HomePage = () => {
                 maxWidth="lg"
                 sx={{
                     position: 'relative',
-                    // overflowX: isMobile ? 'hidden' : 'visible',
+                    overflowX: isTouchDevice ? 'hidden' : 'visible',
                 }}
             >
                 <AboutMeSection id={"aboutMe"}/>

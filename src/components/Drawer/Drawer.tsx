@@ -35,11 +35,17 @@ const TopDrawer: React.FC = () => {
             icon: <TelegramIcon/>,
             color: '#0088cc',
             label: 'Telegram',
-            url: `https://t.me/${'LermadoExpunso'}?text=${'Здраствуйте хотел бы с вами начать заниматься, когда можно будет провести пробное занятие?'}`
+            // url: `https://t.me/${'fd'}?text=${'Здраствуйте хотел бы с вами начать заниматься, когда можно будет провести пробное занятие?'}`
         },
-        {icon: <WhatsAppIcon/>, color: '#25D366', label: 'WhatsApp', url: 'https://wa.me/89875888795'},
-        {icon: <EmailIcon/>, color: '#eadb35', label: 'Email', url: 'kirillrublik@yandex.ru'},
-        {icon: <InstagramIcon/>, color: '#E1306C', label: 'Instagram', url: 'https://instagram.com/yourusername'},
+        {icon: <WhatsAppIcon/>, color: '#25D366', label: 'WhatsApp',
+            // url: 'https://wa.me/544545'
+        },
+        {icon: <EmailIcon/>, color: '#eadb35', label: 'Email',
+            // url: 'kirillrublik@yandex.ru'
+        },
+        {icon: <InstagramIcon/>, color: '#E1306C', label: 'Instagram',
+            // url: 'https://instagram.com/yourusername'
+        },
     ];
 
     const handleNavigation = (targetId: string) => {
@@ -55,9 +61,9 @@ const TopDrawer: React.FC = () => {
         handleClose(); // Закрываем drawer после клика
     };
 
-    const handleContactClick = (url: string) => {
-        window.open(url, '_blank');
-    };
+    // const handleContactClick = (url: string) => {
+    //     window.open(url, '_blank');
+    // };
 
     return (
         <Drawer
@@ -168,7 +174,7 @@ const TopDrawer: React.FC = () => {
                         <IconButton
                             key={index}
                             size="large"
-                            onClick={() => handleContactClick(contact.url)}
+                            // onClick={() => handleContactClick(contact.url)}
                             sx={{
                                 transition: 'all 0.3s ease',
                                 '&:hover': {

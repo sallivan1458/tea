@@ -1,11 +1,10 @@
 import {CardGoodsProps} from "components/CardGoods.tsx";
-import standartTEA from "./assets/standardTEA.jpg";
-import personalTEA from "./assets/personalTEA.jpg";
-import examTEA from "./assets/examTEA.jpg";
+import standartTEA from "./assets/standardTEA.webp";
+import personalTEA from "./assets/personalTEA.webp";
+import examTEA from "./assets/examTEA.webp";
 import {QuestionCardProps} from "components/CardQuestion.tsx";
-import DimaZvedovPNG from "./assets/standardTEA.jpg";
+import DimaZvedov from "./assets/standardTEA.webp";
 import MihailBardashPNG from "./assets/personalTEA.jpg";
-import VladimirPutinPNG from "./assets/examTEA.jpg";
 import bogdanJPG from "./assets/bogomDAN.jpg";
 import {IReview} from "./sections/Reviews/ReviewsSection.tsx";
 
@@ -65,7 +64,7 @@ export const reviews: IReview[] = [
         id: '1',
         title: 'Dima',
         description: 'Стандартный урок английского языка, охватывающий все аспекты: грамматику, лексику, аудирование и разговорную практику.',
-        image: DimaZvedovPNG,
+        image: DimaZvedov,
         date: '1755873602612'
     },
     {
@@ -79,7 +78,7 @@ export const reviews: IReview[] = [
         id: '3',
         title: 'Vladimir',
         description: 'Специализированная подготовка к экзаменам ОГЭ, ЕГЭ, IELTS или TOEFL. Прорабатываем экзаменационные стратегии и типовые задания.',
-        image: VladimirPutinPNG,
+        image: examTEA,
         date: '1755873602612'
     }, {
         id: '4',
@@ -92,7 +91,7 @@ export const reviews: IReview[] = [
         id: '5',
         title: 'Kirill',
         description: 'Описание совершенного урока номер 5, не очень большое колличество текста',
-        image: VladimirPutinPNG,
+        image: standartTEA,
         date: '1755873602612'
     }
 ];

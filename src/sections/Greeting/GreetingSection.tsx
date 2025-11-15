@@ -1,13 +1,15 @@
-import {useRef} from 'react';
-import tieferliedIMG from '../../assets/StartLogo.jpg'
+import { useRef} from 'react';
+import tieferliedIMG from '../../assets/StartLogo.webp'
 import {
     StyledGreetingSection,
-    StyledTieferliedIMG,
     StyledContentBox,
     StyledTypography,
-    StyledAdditionalBox
+    StyledAdditionalBox, StyledBackgroundImage
 } from './Styled';
 import {useMediaQuery, useTheme} from "@mui/material";
+import {useGSAP} from "@gsap/react";
+import gsap from "gsap";
+import {useAppSelector} from "../../store/store.ts";
 
 interface IGreetingSectionProps {
     id: string
@@ -16,10 +18,30 @@ interface IGreetingSectionProps {
 const GreetingSection = ({id}: IGreetingSectionProps) => {
     const greetingSection = useRef(null)
     const headingRef = useRef(null);
-    const tieferliedRef = useRef(null);
 
     const theme = useTheme();
     const isWidthMin600 = useMediaQuery(theme.breakpoints.down('sm'));
+    const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice')
+
+
+    useGSAP(() => {
+        if (!isTouchDevice) {return}
+
+        gsap.fromTo(headingRef.current, {
+            y: -80,
+            opacity: 1
+        }, {
+            y: -300,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: greetingSection.current,
+                start: '0% 0%',
+                end: 'bottom top',
+                scrub: true,
+            }
+        });
+    }, { scope: greetingSection, dependencies: [isTouchDevice]  });
+
 
 
     return (
@@ -28,9 +50,10 @@ const GreetingSection = ({id}: IGreetingSectionProps) => {
                 id={id}
                 ref={greetingSection}>
                 {/* Фоновое изображение */}
-                <StyledTieferliedIMG
-                    ref={tieferliedRef}
-                    src={tieferliedIMG}
+                <StyledBackgroundImage
+                    style={{
+                        backgroundImage: `url(${tieferliedIMG})`
+                    }}
                 />
 
                 {/* Контент поверх фона */}

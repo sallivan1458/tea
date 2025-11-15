@@ -183,8 +183,7 @@ export const CardGoods = ({
                         alignItems: 'center',
                     }}
                 >
-                    <Typography
-                        variant="body1"
+                    <Box
                         sx={{
                             textAlign: 'left',
                             color: 'white',
@@ -217,7 +216,7 @@ export const CardGoods = ({
                                 </Typography>
                             </Box>
                         ))}
-                    </Typography>
+                    </Box>
                 </Box>
             </Box>
         </Box>

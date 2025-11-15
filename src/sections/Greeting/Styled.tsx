@@ -6,13 +6,13 @@ export const StyledGreetingSection = styled(Box)({
     overflow: 'hidden',
     '&::before': {
         content: '""',
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
         left: 0,
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         backgroundColor: '#010101',
-        zIndex: -2,
+        zIndex: -1,
     },
     '&::after': {
         content: '""',
@@ -20,25 +20,31 @@ export const StyledGreetingSection = styled(Box)({
         bottom: 0,
         left: 0,
         width: '100vw',
-        height: '30vh',
+        height: '50vh',
         background: 'linear-gradient(to top, #010101, transparent)',
         zIndex: 0,
     }
 });
 
-export const StyledTieferliedIMG = styled('img')(({ theme }) => ({
+export const StyledBackgroundImage = styled(Box)({
     position: 'absolute',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
+    backgroundSize: 'contain',
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
     zIndex: 0,
-    objectPosition: 'center center',
-    [theme.breakpoints.up('md')]: {
-        objectFit: 'contain',
+
+    '@media (max-width: 900px)': {
+        backgroundSize: 'cover',
     },
-}));
+
+    '@media (orientation: portrait)': {
+        backgroundSize: 'cover',
+    },
+});
 
 export const StyledContentBox = styled(Box)({
     position: 'relative',
