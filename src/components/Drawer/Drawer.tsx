@@ -8,7 +8,7 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import {gsap} from "gsap";
-import {INavigateButton} from "components/NavigateSection/NavigateSection.tsx";
+import {buttons} from "../../description.ts";
 
 const TopDrawer: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -18,16 +18,6 @@ const TopDrawer: React.FC = () => {
         dispatch(closeDrawer());
     };
 
-    // Навигационные пункты
-    const buttons: INavigateButton[] = [
-        {title: 'TEA', targetId: 'greeting'},
-        {title: 'EDUCATION', targetId: 'education'},
-        {title: 'ADVANTAGES', targetId: 'advantages'},
-        {title: 'GOODS', targetId: 'goods'},
-        {title: 'REVIEWS', targetId: 'reviews'},
-        {title: 'QUESTIONS', targetId: 'questions'},
-        {title: 'CONTACTS', targetId: 'contacts'},
-    ];
 
     // Контакты
     const contacts = [

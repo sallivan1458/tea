@@ -71,7 +71,7 @@ export const StyledAdditionalBox = styled(Box)({
     position: 'relative',
     height: '30vh',
     willChange: 'transform',
-    '&::before': {
+    '&::after': {
         content: '""',
         position: 'fixed',
         top: 0,

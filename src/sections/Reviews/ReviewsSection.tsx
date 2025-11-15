@@ -39,10 +39,12 @@ const ReviewsSection = ({ id }: IReviewsSectionProps) => {
     useGSAP(() => {
         gsap.fromTo(reviewTitle.current, {
             opacity: 0,
-            y: 20
+            x: '250'
         }, {
             opacity: 1,
-            y: 0,
+            x: 0,
+            duration:'1',
+            ease: "power4.out",
             scrollTrigger: {
                 trigger: reviewsSection.current,
                 start: '-20% center',
@@ -53,11 +55,15 @@ const ReviewsSection = ({ id }: IReviewsSectionProps) => {
 
         gsap.fromTo(reviewsSlider.current, {
             opacity: 0,
+            x:'-250',
         }, {
+            duration:'1',
             opacity: 1,
+            x:'0',
+            ease: "power4.out",
             scrollTrigger: {
                 trigger: reviewsSection.current,
-                start: '-15% center',
+                start: '-25% center',
                 end: '-0% center',
                 scrub: !isTouchDevice,
             }

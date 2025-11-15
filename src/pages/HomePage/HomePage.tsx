@@ -13,6 +13,7 @@ import {useGSAP} from "@gsap/react";
 import {Container} from "@mui/material";
 import AboutMeSection from "../../sections/AboutMeSection/AboutMeSection.tsx";
 import {setLoading} from "../../store/LoadingState.ts";
+import {scrollSections, SectionId} from "../../description.ts";
 
 
 const HomePage = () => {
@@ -23,18 +24,8 @@ const HomePage = () => {
     useGSAP(() => {
         dispatch(setContentReady(true));
 
-        const sections = [
-            'greeting',
-            'aboutMe',
-            // 'education',
-            'advantages',
-            'goods',
-            'reviews',
-            'questions',
-            'contacts'
-        ];
 
-        sections.forEach(id => {
+        scrollSections.forEach(id => {
             const section = document.getElementById(id);
             if (section) {
                 if (id === 'contacts') {
@@ -73,7 +64,7 @@ const HomePage = () => {
             margin: 0,
             boxSizing: 'border-box',
         }}>
-            <GreetingSection id="greeting"/>
+            <GreetingSection id={SectionId.GREETING}/>
             <Container
                 component="main"
                 maxWidth="lg"
@@ -82,13 +73,12 @@ const HomePage = () => {
                     overflowX: isTouchDevice ? 'hidden' : 'visible',
                 }}
             >
-                <AboutMeSection id={"aboutMe"}/>
-                {/*<EducationSection id="education"/>*/}
-                <AdvantagesSection id="advantages"/>
-                <GoodsSection id="goods"/>
-                <ReviewsSection id="reviews"/>
-                <QuestionsSection id="questions"/>
-                <ContactsSection id="contacts"/>
+                <AboutMeSection id={SectionId.ABOUT_ME}/>
+                <AdvantagesSection id={SectionId.ADVANTAGES}/>
+                <GoodsSection id={SectionId.GOODS}/>
+                <ReviewsSection id={SectionId.REVIEWS}/>
+                <QuestionsSection id={SectionId.QUESTIONS}/>
+                <ContactsSection id={SectionId.CONTACTS}/>
             </Container>
         </div>
     );

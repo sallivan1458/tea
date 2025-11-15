@@ -69,18 +69,27 @@ const Loader = ({
                 gsap.set(split.chars, { color: 'rgba(255, 255, 255, 0.3)' });
                 // Анимация появления каждого символа
                 split.chars.forEach((char, index) => {
+                    const groupIndex = Math.floor(index / 3);
+                    const positionInGroup = index % 3;
+
+                    const colors = [
+                        'rgb(80,74,248)',   // Первая буква в группе
+                        'rgb(121,108,244)',   // Вторая буква в группе
+                        'rgb(157,147,248)'    // Третья буква в группе
+                    ];
+
                     const tl = gsap.timeline({
-                        delay: index * 0.05
+                        delay: groupIndex * 0.1 + positionInGroup * 0.02
                     });
 
                     tl.to(char, {
-                        color: `rgb(52, 248, 149)`,
-                        duration: 0.05,
+                        color: colors[positionInGroup],
+                        duration: 0.04,
                         ease: "power2.out"
                     })
                         .to(char, {
                             color: 'rgba(255, 255, 255, 1)',
-                            duration: 0.1,
+                            duration: 0.2,
                             ease: "power2.out"
                         });
                 });

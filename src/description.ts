@@ -59,6 +59,8 @@ export const questions: QuestionCardProps[] = [
 
 
 
+
+
 export const reviews: IReview[] = [
     {
         id: '1',
@@ -95,3 +97,30 @@ export const reviews: IReview[] = [
         date: '1755873602612'
     }
 ];
+
+
+
+
+
+export const SectionId = {
+    GREETING: 'greeting',
+    ABOUT_ME: 'aboutMe',
+    ADVANTAGES: 'advantages',
+    GOODS: 'goods',
+    REVIEWS: 'reviews',
+    QUESTIONS: 'questions',
+    CONTACTS: 'contacts',
+} as const;
+
+
+export const buttons = [
+    { title: 'TEA', targetId: SectionId.GREETING },
+    { title: 'ABOUT ME', targetId: SectionId.ABOUT_ME },
+    { title: 'ADVANTAGES', targetId: SectionId.ADVANTAGES },
+    { title: 'GOODS', targetId: SectionId.GOODS },
+    { title: 'REVIEWS', targetId: SectionId.REVIEWS },
+    { title: 'QUESTIONS', targetId: SectionId.QUESTIONS },
+    { title: 'CONTACTS', targetId: SectionId.CONTACTS },
+] as const;
+
+export const scrollSections = Object.values(SectionId);

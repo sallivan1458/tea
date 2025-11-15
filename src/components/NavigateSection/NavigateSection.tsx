@@ -13,25 +13,13 @@ import {
     StyledIconButton,
 } from './Styled.tsx';
 import {toggleDrawer} from "../../store/drawerSlice.ts";
+import {buttons} from "../../description.ts";
 
 gsap.registerPlugin(ScrollToPlugin);
 
-export interface INavigateButton {
-    title: string;
-    targetId: string;
-}
 
 function NavigateSection() {
-    const buttons: INavigateButton[] = [
-        { title: 'TEA', targetId: 'greeting' },
-        { title: 'ABOUT ME', targetId: 'aboutMe' },
-        // { title: 'EDUCATION', targetId: 'education' },
-        { title: 'ADVANTAGES', targetId: 'advantages' },
-        { title: 'GOODS', targetId: 'goods' },
-        { title: 'REVIEWS', targetId: 'reviews' },
-        { title: 'QUESTIONS', targetId: 'questions' },
-        { title: 'CONTACTS', targetId: 'contacts' },
-    ];
+
 
     const dispatch = useAppDispatch();
     const activeSection = useAppSelector(state => state.gsapState.activeSection);
@@ -137,7 +125,7 @@ function NavigateSection() {
                         {!isMobile ? (
                             <>
                                 <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', gap: 0 }}>
-                                    {buttons.map((button: INavigateButton, index) => (
+                                    {buttons.map((button, index) => (
                                         <StyledNavButton
                                             key={index}
                                             ref={(el) => (navButtonsRef.current[index] = el)}

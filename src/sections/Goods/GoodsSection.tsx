@@ -1,18 +1,14 @@
-import {useRef, useState, useEffect} from 'react'; // <--- Добавили useEffect
+import {useRef} from 'react';
 import gsap from 'gsap';
 import {useGSAP} from "@gsap/react";
-import {useTheme, useMediaQuery} from '@mui/material';
 import {
     GoodsBlock,
     GoodsContainer,
     GoodsContent,
     GoodsTitle,
     GoodsScrollContainer,
-    ScrollButton,
-    ScrollControls
 } from './Styled';
 import {CardGoods} from "components/CardGoods.tsx";
-import {ChevronLeft, ChevronRight} from '@mui/icons-material';
 import {goods} from "../../description.ts";
 import {useAppSelector} from "../../store/store.ts";
 
@@ -31,41 +27,7 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
         useRef<HTMLDivElement>(null)
     ];
 
-    const theme = useTheme();
-    const isMdScreen = useMediaQuery(theme.breakpoints.up('md'));
     const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice');
-
-
-    const [activeIndex, setActiveIndex] = useState(0);
-
-
-    const scrollLeft = () => {
-        setActiveIndex(prevIndex => Math.max(prevIndex - 1, 0));
-    };
-
-    const scrollRight = () => {
-        setActiveIndex(prevIndex => Math.min(prevIndex + 1, goods.length - 1));
-    };
-
-    useEffect(() => {
-        const container = scrollContainerRef.current;
-        const targetElement = educationBlocks[activeIndex]?.current;
-
-        if (container && targetElement) {
-            // Вычисляем позицию для центрирования элемента
-            const containerWidth = container.offsetWidth;
-            const targetLeft = targetElement.offsetLeft;
-            const targetWidth = targetElement.offsetWidth;
-
-            // Формула: (позиция элемента слева) + (половина ширины элемента) - (половина ширины контейнера)
-            const scrollTo = targetLeft + targetWidth / 2 - containerWidth / 2;
-
-            container.scrollTo({
-                left: scrollTo,
-                behavior: 'smooth'
-            });
-        }
-    }, [activeIndex]);
 
 
     useGSAP(() => {
@@ -83,8 +45,8 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
             }
         });
 
-        educationBlocks.forEach((block, index) => {
-            if (!isTouchDevice) {
+        if (!isTouchDevice) {
+            educationBlocks.forEach((block, index) => {
                 gsap.fromTo(block.current, {
                     opacity: 1,
                     x: 0
@@ -93,16 +55,16 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
                     x: -100,
                     scrollTrigger: {
                         trigger: educationSection.current,
-                        start: `center ${10 + index * 3}%`,
+                        start: `center ${20 + index * 3}%`,
                         end: `center ${-10 + index * 2}%`,
                         scrub: !isTouchDevice,
                     }
                 });
-            }
-        });
+            });
+        }
+
 
         educationBlocks.forEach((block, index) => {
-
             if (isTouchDevice) {
                 // Для touch-устройств простой таймлайн
                 const tl = gsap.timeline({
@@ -172,17 +134,6 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
                         </GoodsBlock>
                     ))}
                 </GoodsScrollContainer>
-
-                {!isMdScreen && (
-                    <ScrollControls>
-                        <ScrollButton onClick={scrollLeft}>
-                            <ChevronLeft fontSize="large"/>
-                        </ScrollButton>
-                        <ScrollButton onClick={scrollRight}>
-                            <ChevronRight fontSize="large"/>
-                        </ScrollButton>
-                    </ScrollControls>
-                )}
             </GoodsContent>
         </GoodsContainer>
     );

@@ -1,129 +1,26 @@
 import { useRef } from 'react';
-import { useTheme, useMediaQuery, Typography, Box, styled } from '@mui/material';
+import { useTheme, useMediaQuery, Typography, Box } from '@mui/material';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-// Замените на ваше реальное фото
 import AboutMePhoto from '../../assets/sticker.webp';
 import {useAppSelector} from "../../store/store.ts";
+import {
+    AboutMeContainer,
+    AboutMeTitle,
+    TextContent,
+    ContentWrapper,
+    ScrollableContent,
+    InfoBlock,
+    PhotoContainer,
+    Photo,
+} from "./Styled.tsx";
 
 interface AboutMeSectionProps {
     id: string;
 }
 
-// Styled components
-const AboutMeContainer = styled(Box)({
-    height: '100%',
-    // maxHeight: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    willChange: 'transform',
-    marginBottom: '20vh',
-    '&::before': {
-        content: '""',
-        position: 'fixed',
-        top: 0,
-        left: '50%',
-        transform:'translateX(-50%)',
-        width: '100vw',
-        height: '100vh',
-        background: 'linear-gradient(to bottom, #010101 0%, transparent 100%)',
-        zIndex: -1,
-        pointerEvents: 'none',
-    },
-});
 
-const AboutMeTitle = styled(Typography)({
-    display: 'flex',
-    justifyContent: 'center',
-    willChange: 'opacity, transform',
-    marginBottom: '30px',
-});
-
-const ContentWrapper = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: theme.spacing(4),
-    width: '100%',
-    [theme.breakpoints.down('md')]: {
-        flexDirection: 'column-reverse',
-        gap: theme.spacing(3),
-        textAlign: 'center',
-    },
-    [theme.breakpoints.down('sm')]: {
-        gap: theme.spacing(2),
-    },
-}));
-
-const TextContent = styled(Box)(({ theme }) => ({
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
-        alignItems: 'center',
-        maxHeight: 'none',
-        gap: theme.spacing(1.5),
-    },
-}));
-
-const PhotoContainer = styled(Box)({
-    flex: '0 0 35%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    objectFit: 'cover',
-});
-
-const Photo = styled('img')(({theme}) => ({
-    width: '100%',
-    height: 'auto',
-    maxHeight: '500px',
-    borderRadius: '20px',
-    boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-    objectFit: 'cover',
-    opacity: '0',
-    [theme.breakpoints.down('md')]: {
-        width: '70%',
-    },
-}));
-
-const InfoBlock = styled(Box)(({ theme }) => ({
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    backdropFilter: 'blur(10px)',
-    padding: theme.spacing(2),
-    borderRadius: '12px',
-    boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-    border: `1px solid rgba(255, 255, 255, 0.2)`,
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-    opacity: '0',
-    '&:hover': {
-        transform: 'translateY(-4px)',
-        boxShadow: '0 12px 32px rgba(0,0,0,0.15)',
-    },
-    [theme.breakpoints.down('md')]: {
-        padding: theme.spacing(1.5),
-    },
-}));
-
-const ScrollableContent = styled(Box)({
-    flex: 1,
-    maxHeight: 'calc(80vh - 120px)',
-    '&::-webkit-scrollbar': {
-        width: '4px',
-    },
-    '&::-webkit-scrollbar-track': {
-        background: 'rgba(255, 255, 255, 0.1)',
-        borderRadius: '2px',
-    },
-    '&::-webkit-scrollbar-thumb': {
-        background: 'rgba(255, 255, 255, 0.3)',
-        borderRadius: '2px',
-    },
-});
 
 const AboutMeSection = ({ id }: AboutMeSectionProps) => {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -249,8 +146,7 @@ const AboutMeSection = ({ id }: AboutMeSectionProps) => {
             if (block) {
                 gsap.fromTo(block, {
                     opacity: 0,
-                    x: isMobile ? 0 : -30,
-                    y: isMobile ? 20 : 0,
+                    y: isMobile ? 20 : 30,
                 }, {
                     opacity: 1,
                     x: 0,
@@ -259,7 +155,7 @@ const AboutMeSection = ({ id }: AboutMeSectionProps) => {
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: `${(index + 1) * 10}% center`,
-                        end: `${30 + (index + 1) * 10}% center`,
+                        end: `${10 + (index + 1) * 10}% center`,
                         scrub: !isTouchDevice,
                     }
                 });
