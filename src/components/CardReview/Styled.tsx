@@ -37,7 +37,6 @@ export const ReviewContent = styled(Box)(({theme}) => ({
 
 export const ReviewText = styled(Typography)(({theme}) => ({
     color: theme.palette.text.secondary,
-    fontStyle: 'italic',
     margin: '0 auto',
     textAlign: 'justify',
 }));

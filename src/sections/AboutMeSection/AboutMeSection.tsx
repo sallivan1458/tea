@@ -1,9 +1,9 @@
-import { useRef } from 'react';
-import { useTheme, useMediaQuery, Typography, Box } from '@mui/material';
+import {useRef} from 'react';
+import {useTheme, useMediaQuery, Typography, Box, Container} from '@mui/material';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import {useGSAP} from '@gsap/react';
 
-import AboutMePhoto from '../../assets/sticker.webp';
+import AboutMePhoto from '../../assets/aboutMePhoto.webp';
 import {useAppSelector} from "../../store/store.ts";
 import {
     AboutMeContainer,
@@ -21,8 +21,7 @@ interface AboutMeSectionProps {
 }
 
 
-
-const AboutMeSection = ({ id }: AboutMeSectionProps) => {
+const AboutMeSection = ({id}: AboutMeSectionProps) => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLImageElement>(null);
     const photoRef = useRef<HTMLImageElement>(null);
@@ -162,7 +161,7 @@ const AboutMeSection = ({ id }: AboutMeSectionProps) => {
             }
         });
 
-    }, { scope: sectionRef, dependencies: [isMobile] });
+    }, {scope: sectionRef, dependencies: [isMobile]});
 
     // Данные для блоков информации
     const infoBlocks = [
@@ -191,83 +190,87 @@ const AboutMeSection = ({ id }: AboutMeSectionProps) => {
             id={id}
             ref={sectionRef}
         >
-            <AboutMeTitle
-                variant="h1"
-                ref={titleRef}
+            <Container
+                maxWidth="lg"
             >
-                My education
-            </AboutMeTitle>
-            <ContentWrapper>
-                <TextContent>
-                    <Typography
-                        ref={nameRef}
-                        variant={isSmallMobile ? "h4" : "h3"}
-                        sx={{
-                            fontWeight: 'bold',
-                            color: 'primary.main',
-                            mb: 1,
-                            opacity: '0',
-                        }}
-                    >
-                        Сергей Михайлович
-                    </Typography>
+                <AboutMeTitle
+                    variant="h1"
+                    ref={titleRef}
+                >
+                    АВТОР
+                </AboutMeTitle>
+                <ContentWrapper>
+                    <TextContent>
+                        <Typography
+                            ref={nameRef}
+                            variant={isSmallMobile ? "h4" : "h3"}
+                            sx={{
+                                fontWeight: 'bold',
+                                color: 'primary.main',
+                                mb: 1,
+                                opacity: '0',
+                            }}
+                        >
+                            Сергей Михайлович
+                        </Typography>
 
-                    <Typography
-                        ref={descriptionRef}
-                        variant={isSmallMobile ? "body2" : "body1"}
-                        sx={{
-                            color: 'text.primary',
-                            mb: 3,
-                            maxWidth: '500px',
-                            lineHeight: 1.6,
-                            opacity: '0',
-                        }}
-                    >
-                        Профессиональный репетитор английского языка который сможет обучить тебя английскому языку
-                    </Typography>
+                        <Typography
+                            ref={descriptionRef}
+                            variant={isSmallMobile ? "body2" : "body1"}
+                            sx={{
+                                color: 'text.primary',
+                                mb: 3,
+                                maxWidth: '500px',
+                                lineHeight: 1.6,
+                                opacity: '0',
+                            }}
+                        >
+                            Профессиональный репетитор английского языка который сможет обучить тебя английскому языку
+                        </Typography>
 
-                    {/* Блоки информации с скроллом */}
-                    <ScrollableContent>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                            {infoBlocks.map((block, index) => (
-                                <InfoBlock
-                                    key={index}
-                                    ref={addToInfoBlocksRef}
-                                >
-                                    <Typography
-                                        variant={isSmallMobile ? "subtitle1" : "h6"}
-                                        sx={{
-                                            fontWeight: 'bold',
-                                            color: 'primary.main',
-                                            mb: 1
-                                        }}
+                        {/* Блоки информации с скроллом */}
+                        <ScrollableContent>
+                            <Box sx={{display: 'flex', flexDirection: 'column', gap: 2}}>
+                                {infoBlocks.map((block, index) => (
+                                    <InfoBlock
+                                        key={index}
+                                        ref={addToInfoBlocksRef}
                                     >
-                                        {block.title}
-                                    </Typography>
-                                    <Typography
-                                        variant={isSmallMobile ? "body2" : "body1"}
-                                        sx={{
-                                            color: 'text.primary',
-                                            lineHeight: 1.5
-                                        }}
-                                    >
-                                        {block.content}
-                                    </Typography>
-                                </InfoBlock>
-                            ))}
-                        </Box>
-                    </ScrollableContent>
-                </TextContent>
+                                        <Typography
+                                            variant={isSmallMobile ? "subtitle1" : "h6"}
+                                            sx={{
+                                                fontWeight: 'bold',
+                                                color: 'primary.main',
+                                                mb: 1
+                                            }}
+                                        >
+                                            {block.title}
+                                        </Typography>
+                                        <Typography
+                                            variant={isSmallMobile ? "body2" : "body1"}
+                                            sx={{
+                                                color: 'text.primary',
+                                                lineHeight: 1.5
+                                            }}
+                                        >
+                                            {block.content}
+                                        </Typography>
+                                    </InfoBlock>
+                                ))}
+                            </Box>
+                        </ScrollableContent>
+                    </TextContent>
 
-                {/* Фото */}
-                <PhotoContainer>
-                    <Photo
-                        ref={photoRef}
-                        src={AboutMePhoto}
-                        alt="Мария Иванова - репетитор английского языка"
-                    />
-                </PhotoContainer>
-            </ContentWrapper>
+                    {/* Фото */}
+                    <PhotoContainer>
+                        <Photo
+                            ref={photoRef}
+                            src={AboutMePhoto}
+                            alt="Мария Иванова - репетитор английского языка"
+                        />
+                    </PhotoContainer>
+                </ContentWrapper>
+            </Container>
         </AboutMeContainer>
     );
 };

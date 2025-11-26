@@ -4,7 +4,7 @@ import {useGSAP} from "@gsap/react";
 import {useTheme, useMediaQuery} from '@mui/material';
 
 import BGU_uunit from '../../assets/BGU_uunit.jpg'
-import China_University from '../../assets/China_University.jpg'
+import China_University from '../../assets/China_University.webp'
 import School39 from '../../assets/School39.jpg'
 import {CardEducation, CardEducationProps} from "components/CardEducation.tsx";
 import {

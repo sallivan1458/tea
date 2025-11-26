@@ -39,8 +39,8 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
             y: 0,
             scrollTrigger: {
                 trigger: educationSection.current,
-                start: '-20% center',
-                end: '-5% center',
+                start: '-30% center',
+                end: '-15% center',
                 scrub: !isTouchDevice,
             }
         });
@@ -64,29 +64,35 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
         }
 
 
-        educationBlocks.forEach((block, index) => {
             if (isTouchDevice) {
-                // Для touch-устройств простой таймлайн
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: educationSection.current,
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        toggleActions: 'play none none reverse'
-                    }
-                });
+                educationBlocks.forEach((block, index) => {
 
-                tl.fromTo(block.current, {
-                    opacity: 0,
-                    x: 100 // Сдвиг на 100px
-                }, {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1.5,
-                    ease: "power2.out",
-                    delay: index * 0.2
-                });
-            } else {
+                    // Для touch-устройств простой таймлайн
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: educationSection.current,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    });
+
+                    tl.fromTo(block.current, {
+                        opacity: 0,
+                        x: 100 // Сдвиг на 100px
+                    }, {
+                        opacity: 1,
+                        x: 0,
+                        duration: 1.5,
+                        ease: "power2.out",
+                        delay: index * 0.2
+                    });
+                })
+            }
+
+        if (!isTouchDevice) {
+
+            educationBlocks.forEach((block, index) => {
 
                 gsap.fromTo(block.current, {
                     opacity: 0,
@@ -101,9 +107,8 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
                         scrub: true,
                     }
                 });
-            }
-        });
-
+            });
+        }
     }, {scope: educationSection});
 
     return (

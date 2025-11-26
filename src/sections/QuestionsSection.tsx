@@ -67,7 +67,7 @@ const QuestionsSection = ({id}:IQuestionsSectionProps) => {
             id={id}
             ref={questionsSection}
             sx={{
-                mb: '20vh',
+                mb: '20lvh',
                 willChange: 'transform'
             }}
         >
@@ -78,7 +78,7 @@ const QuestionsSection = ({id}:IQuestionsSectionProps) => {
                     display: 'flex',
                     justifyContent: 'center',
                     willChange: 'opacity, transform',
-                    mb: '10vh'
+                    mb: '10lvh'
                 }}
             >
                 Вопросы?

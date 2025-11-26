@@ -14,6 +14,7 @@ import {
 } from './Styled.tsx';
 import {toggleDrawer} from "../../store/drawerSlice.ts";
 import {buttons} from "../../description.ts";
+import {useGSAP} from "@gsap/react";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -23,12 +24,14 @@ function NavigateSection() {
 
     const dispatch = useAppDispatch();
     const activeSection = useAppSelector(state => state.gsapState.activeSection);
+    const isLoadingSucess = useAppSelector(state => state.loading.loading === 'success')
 
     const isMobile = useMediaQuery('(max-width:900px)');
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     const indicatorRef = useRef(null); // Ref для нашего индикатора
     const navButtonsRef = useRef<(HTMLButtonElement | null)[]>([]);
+    const navigateContainerRef = useRef<HTMLDivElement>(null);
     const ctx = useRef<gsap.Context>();
 
     useEffect(() => {
@@ -117,8 +120,27 @@ function NavigateSection() {
         });
     }, []);
 
+    useGSAP(() => {
+
+        gsap.set(navigateContainerRef.current,{
+            y: -180,
+        })
+
+        if (!isLoadingSucess) {
+            return
+        }
+
+        gsap.fromTo(navigateContainerRef.current, {
+            y: -180,
+        }, {
+            y: 0,
+            duration: 1.3,
+            ease: 'power4.out',
+        });
+    }, {scope: navigateContainerRef, dependencies: [isLoadingSucess]});
+
     return (
-        <StyledAppBar position="fixed">
+        <StyledAppBar ref={navigateContainerRef} position="fixed">
             <StyledBoxContainer>
                 <StyledToolbarWrapper>
                     <StyledToolbar disableGutters>

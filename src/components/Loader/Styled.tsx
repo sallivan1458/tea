@@ -40,6 +40,7 @@ export const LoaderContent = styled(Box)({
     alignItems: 'center',
     gap: '2rem',
     textAlign: 'center',
+    paddingTop:'20vh'
 });
 
 export const LoaderText = styled(Typography)({
@@ -48,15 +49,25 @@ export const LoaderText = styled(Typography)({
     textTransform: 'uppercase',
     opacity: 0,
 
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    flexDirection: 'column',
+
     '&.main-text': {
-        // Стили для основного текста
+        '@media (max-width: 400px)': {
+            fontSize: '2.2rem ',
+        }
     },
 
     '&.sub-text': {
-        fontWeight: 300,
-        textTransform: 'none',
-        fontStyle: 'italic',
+        maxWidth:'90%',
+        '@media (max-width: 400px)': {
+            fontSize: '1rem ',
+        }
     },
+
+
 });
 
 export const ContinueButton = styled(Button)({
@@ -82,4 +93,48 @@ export const ContinueButton = styled(Button)({
     '&:active': {
         transform: 'none',
     },
+});
+
+export const VideoContainer = styled(Box)({
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '50%',
+    // transform: 'translate(-50%, 50%)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: -1,
+})
+export const VideoBackground = styled('video')(({ theme }) => ({
+    position: 'absolute',
+    top: '40%', // Сдвигаем выше к верхней границе
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '60%',
+    height: 'auto',
+    maxHeight: '80%', // Ограничиваем максимальную высоту
+    objectFit: 'contain', // Сохраняем пропорции
+    transition: 'opacity 0.8s ease-in-out',
+
+
+    [theme.breakpoints.down('md')]: {
+        width: '90%',
+        height: '90%',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+        width: '100%',
+        height: '100%',
+    }
+}));
+
+
+export const ImgBackground = styled('img')({
+    width: '60%',
+    height: 'auto',
+    objectFit: 'contain',
+    display: 'block',
+    margin: '0 auto'
 });

@@ -1,12 +1,10 @@
 import {StyledAccordion} from "components/StyledComponents/StyledAccordion.ts";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {AccordionDetails, AccordionSummary, Typography} from "@mui/material";
+import {QuestionCardProps} from "../description.ts";
 
 
-export interface QuestionCardProps {
-    text?: string;
-    title?: string;
-}
+
 
 export const CardQuestion = ({
                                  title = 'Текст',

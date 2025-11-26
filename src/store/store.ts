@@ -10,7 +10,6 @@ import gsapReducer from './gsapSlice';
 import drawerReducer from './drawerSlice.ts';
 
 
-
 export const store = configureStore({
     reducer: {
         modalWindowSlice: modalWindowReducer,

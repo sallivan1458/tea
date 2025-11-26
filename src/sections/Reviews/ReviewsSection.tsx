@@ -14,13 +14,7 @@ import {reviews} from "../../description.ts";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export interface IReview {
-    id: string;
-    title: string;
-    description: string;
-    date: string;
-    image: string;
-}
+
 
 interface IReviewsSectionProps {
     id: string;
@@ -39,7 +33,7 @@ const ReviewsSection = ({ id }: IReviewsSectionProps) => {
     useGSAP(() => {
         gsap.fromTo(reviewTitle.current, {
             opacity: 0,
-            x: '250'
+            x: '150'
         }, {
             opacity: 1,
             x: 0,
@@ -47,15 +41,15 @@ const ReviewsSection = ({ id }: IReviewsSectionProps) => {
             ease: "power4.out",
             scrollTrigger: {
                 trigger: reviewsSection.current,
-                start: '-20% center',
-                end: '-5% center',
+                start: '-30% center',
+                end: '-15% center',
                 scrub: !isTouchDevice,
             }
         });
 
         gsap.fromTo(reviewsSlider.current, {
             opacity: 0,
-            x:'-250',
+            x:'-150',
         }, {
             duration:'1',
             opacity: 1,

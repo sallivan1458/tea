@@ -10,19 +10,19 @@ interface StyledImageBlockProps {
 }
 
 export const StyledAdvantagesSection = styled(Box)(({ theme }) => ({
-    minHeight: '160vh',
-    marginBottom: '20vh',
+    minHeight: '160lvh',
+    marginBottom: '20lvh',
     [theme.breakpoints.down('md')]: {
         minHeight: 'auto',
-        marginBottom: '10vh',
+        marginBottom: '10lvh',
     },
 }));
 
 export const StyledTitle = styled(Typography)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: '10vh',
-    paddingTop: '5vh',
+    marginBottom: '10lvh',
+    paddingTop: '5lvh',
     [theme.breakpoints.down('md')]: {
         marginBottom: '5vh',
         paddingTop: '2vh',
@@ -35,26 +35,26 @@ export const StyledAdvantageBlock = styled(Box, {
     height: '500px',
     display: 'grid',
     gridTemplateColumns: isImageOnLeft ? '2fr 1fr' : '1fr 2fr',
-    gap: '10vh',
+    gap: '10lvh',
     alignItems: 'start',
-    marginBottom: '10vh',
+    marginBottom: '10lvh',
     [theme.breakpoints.down('xl')]: {
-        gap: '5vh',
-        marginBottom: '5vh',
+        gap: '5lvh',
+        marginBottom: '5lvh',
     },
 
     [theme.breakpoints.down('md')]: {
         gridTemplateColumns: isImageOnLeft ? '3fr 2fr' : '2fr 3fr',
-        gap: '5vh',
-        marginBottom: '5vh',
+        gap: '5lvh',
+        marginBottom: '5lvh',
     },
 
     [theme.breakpoints.down('sm')]: {
         height: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        gap: '5vh',
-        marginBottom: '5vh',
+        gap: '5lvh',
+        marginBottom: '5lvh',
     },
 
 }));
@@ -95,7 +95,19 @@ export const StyledBlockTitle = styled(Typography)({
 
 export const StyledBlockDescription = styled(Typography)(({ theme } : {theme: Theme}) => ({
     textAlign: 'left',
+
     [theme.breakpoints.down('sm')]: {
         textAlign: 'left',
+    },
+
+
+    fontWeight: 200,
+    fontSize: '1.7rem',
+    letterSpacing: '0.06em',
+    '@media (max-width:900px)': {
+        fontSize: '1.5rem',
+    },
+    '@media (max-width:600px)': {
+        fontSize: '1.3rem',
     },
 }));

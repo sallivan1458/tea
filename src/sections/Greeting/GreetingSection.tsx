@@ -1,12 +1,11 @@
-import { useRef} from 'react';
-import tieferliedIMG from '../../assets/StartLogo.webp'
+import {useRef} from 'react';
+import tieferliedIMG from '/assets/startLogo.png'
 import {
     StyledGreetingSection,
     StyledContentBox,
     StyledTypography,
     StyledAdditionalBox, StyledBackgroundImage
 } from './Styled';
-import {useMediaQuery, useTheme} from "@mui/material";
 import {useGSAP} from "@gsap/react";
 import gsap from "gsap";
 import {useAppSelector} from "../../store/store.ts";
@@ -19,13 +18,13 @@ const GreetingSection = ({id}: IGreetingSectionProps) => {
     const greetingSection = useRef(null)
     const headingRef = useRef(null);
 
-    const theme = useTheme();
-    const isWidthMin600 = useMediaQuery(theme.breakpoints.down('sm'));
     const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice')
 
 
     useGSAP(() => {
-        if (!isTouchDevice) {return}
+        if (!isTouchDevice) {
+            return
+        }
 
         gsap.fromTo(headingRef.current, {
             y: -80,
@@ -40,8 +39,7 @@ const GreetingSection = ({id}: IGreetingSectionProps) => {
                 scrub: true,
             }
         });
-    }, { scope: greetingSection, dependencies: [isTouchDevice]  });
-
+    }, { dependencies: [isTouchDevice]});
 
 
     return (
@@ -63,17 +61,8 @@ const GreetingSection = ({id}: IGreetingSectionProps) => {
                         ref={headingRef}
                         variant="h1"
                     >
-                        {!isWidthMin600
-                            ? <>
-                                <span>TIEFERLIED</span>
-                                <span>ENGLISH ACADEMY</span>
-                            </>
-                            : <>
-                                <span>TIEFERLIED</span>
-                                <span>ENGLISH</span>
-                                <span>ACADEMY</span>
-                            </>
-                        }
+                        <span>TIEFERLIED</span>
+                        <span>ENGLISH ACADEMY</span>
 
                     </StyledTypography>
                 </StyledContentBox>

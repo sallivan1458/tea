@@ -2,8 +2,8 @@ import { styled, Box, Typography } from '@mui/material';
 
 export const StyledReviewsSection = styled(Box)({
     position: 'relative',
-    height: '90vh',
-    paddingBottom: '10vh',
+    height: '90lvh',
+    paddingBottom: '10lvh',
     marginBottom:'150px',
     willChange: 'transform',
     display: 'flex',
@@ -15,7 +15,7 @@ export const StyledReviewTitle = styled(Typography)({
     display: 'flex',
     justifyContent: 'center',
     willChange: 'opacity, transform',
-    marginBottom: '4vh',
+    marginBottom: '4lvh',
     textAlign: 'center'
 });
 

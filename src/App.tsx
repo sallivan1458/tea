@@ -9,12 +9,12 @@ import {setDeviceType} from "./store/DeviceStateSlice.ts";
 import {useMediaQuery} from "@mui/material";
 import Loader from "components/Loader/Loader.tsx";
 
+
 const HomePage = lazy(() => import('pages/HomePage/HomePage.tsx'));
 
 function App() {
     const dispatch = useAppDispatch();
     const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
-
 
     const isErrorWindow = useAppSelector(state => state.modalWindowSlice.isErrorOpen);
     const loading = useAppSelector(state => state.loading.loading);

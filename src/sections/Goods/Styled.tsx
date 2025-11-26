@@ -4,7 +4,7 @@ export const GoodsContainer = styled(Box)({
     position: 'relative',
     willChange: 'transform',
     height: '100%',
-    marginBottom: '5vh',
+    marginBottom: '5lvh',
 });
 
 export const GoodsTitle = styled(Typography)({

@@ -4,7 +4,7 @@ import {
     LoaderText,
     ContinueButton,
     VideoBackground,
-    VideoContainer, ImgBackground,
+    VideoContainer,
 } from './Styled';
 import {useAppDispatch, useAppSelector} from "../../store/store.ts";
 import {useEffect, useRef, useState} from "react";
@@ -17,12 +17,13 @@ import secondVideoWEBM from '../../assets/secondVideo.webm'
 import firstVideoMP4 from '../../assets/firstVideo.mp4'
 import secondVideoMP4 from '../../assets/secondVideo.mp4'
 
-import TEALogoWEBP from '../../assets/logo.webp'
 interface LoaderProps {
+    text?: string;
     subText?: string;
 }
 
 const Loader = ({
+                    text = 'Tieferlied English Academy',
                     subText = 'Место, где английский становится твоим конкурентным преимуществом'
                 }: LoaderProps) => {
 
@@ -34,7 +35,6 @@ const Loader = ({
     const [isFirstVideoReady, setIsFirstVideoReady] = useState(false);
     const [isSecondVideoReady, setIsSecondVideoReady] = useState(false);
     const [isVideosPreloaded, setIsVideosPreloaded] = useState(false);
-    const [isMobileDevice, setIsMobileDevice] = useState<boolean|undefined>(undefined);
 
     const mainTextRef = useRef<HTMLDivElement>(null);
     const subTextRef = useRef<HTMLDivElement>(null);
@@ -43,26 +43,17 @@ const Loader = ({
     const containerRef = useRef<HTMLDivElement>(null);
     const firstVideoRef = useRef<HTMLVideoElement>(null);
     const secondVideoRef = useRef<HTMLVideoElement>(null);
-    const imgRef = useRef<HTMLImageElement>(null); // Добавляем ref для фото
-
-    // Определяем мобильное устройство
-    useEffect(() => {
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        setIsMobileDevice(isMobile);
-    }, []);
 
     // Отслеживаем готовность обоих видео
     useEffect(() => {
-        if (isMobileDevice) return
         if (isFirstVideoReady && isSecondVideoReady && !isVideosPreloaded) {
             console.log('Оба видео готовы, устанавливаем isVideosPreloaded = true');
             setIsVideosPreloaded(true);
         }
-    }, [isFirstVideoReady, isSecondVideoReady, isVideosPreloaded, isMobileDevice]);
+    }, [isFirstVideoReady, isSecondVideoReady, isVideosPreloaded]);
 
     // Предзагрузка видео - ЗАПУСКАЕТСЯ ТОЛЬКО ОДИН РАЗ
     useEffect(() => {
-        if (isMobileDevice) return
         console.log("Инициализация загрузки видео");
 
         const firstVideoElement = firstVideoRef.current;
@@ -94,12 +85,11 @@ const Loader = ({
             secondVideoElement.oncanplaythrough = handleSecondVideoReady;
         }
 
-    }, [isMobileDevice]);
+    }, []);
 
     // Запуск первого видео когда оба видео готовы
     useEffect(() => {
-        if (isMobileDevice) return
-        if (isVideosPreloaded && firstVideoRef.current && !isMobileDevice) {
+        if (isVideosPreloaded && firstVideoRef.current) {
             firstVideoRef.current.muted = true;
             console.log('Запуск первого видео');
             const playFirstVideo = async () => {
@@ -113,12 +103,11 @@ const Loader = ({
 
             playFirstVideo();
         }
-    }, [isVideosPreloaded, isMobileDevice]);
+    }, [isVideosPreloaded]);
 
     // Переключение на второе видео
     useEffect(() => {
-        if (isMobileDevice) return
-        if (loadingState === 'lastSecond' && isSecondVideoReady && !isMobileDevice) {
+        if (loadingState === 'lastSecond' && isSecondVideoReady) {
             console.log('Переключение на второе видео');
             const switchToSecondVideo = async () => {
                 setCurrentVideo('second');
@@ -133,11 +122,10 @@ const Loader = ({
 
             switchToSecondVideo();
         }
-    }, [loadingState, isSecondVideoReady, isMobileDevice]);
+    }, [loadingState, isSecondVideoReady]);
 
-    // Анимация появления текста и фото
+    // Анимация появления текста
     useGSAP(() => {
-        if (isMobileDevice === undefined) return
         const tl = gsap.timeline();
 
         tl.fromTo(mainTextRef.current,
@@ -164,30 +152,11 @@ const Loader = ({
             "-=0.5"
         );
 
-        // Анимация появления фото только для мобильных устройств
-        if (isMobileDevice && imgRef.current) {
-            tl.fromTo(imgRef.current,
-                {
-                    opacity: 0,
-                    scale: 0.98,
-                },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 1.5, // Замедленная анимация
-                    ease: "power4.inOut"
-                },
-                "-=0.3" // Начинается немного раньше завершения анимации текста
-            );
-        }
-
-    }, {scope: containerRef, dependencies: [isMobileDevice]});
+    }, { scope: containerRef });
 
     // Анимация появления кнопки
     useGSAP(() => {
-        if (isMobileDevice
-            ? loadingState === 'ready'
-            : loadingState === 'ready' && isVideosPreloaded) {
+        if (loadingState === 'ready' && isVideosPreloaded) {
             console.log('Анимация появления кнопки');
             const tl = gsap.timeline();
             tl.fromTo(buttonRef.current,
@@ -205,7 +174,7 @@ const Loader = ({
                 }
             );
         }
-    }, {dependencies: [loadingState, isVideosPreloaded, isMobileDevice], scope: containerRef});
+    }, { dependencies: [loadingState, isVideosPreloaded], scope: containerRef });
 
     // Анимация исчезновения
     useGSAP(() => {
@@ -214,24 +183,16 @@ const Loader = ({
             tl.to([mainTextRef.current, subTextRef.current, buttonRef.current], {
                 opacity: 0,
                 y: -50,
-                duration: 1,
+                duration: 1.5,
                 ease: "power2.inOut",
                 stagger: 0.1
             });
-            gsap.to(imgRef.current, {
-                opacity: 0,
-                scale: 0.9,
-                delay:0.2,
-                duration: 1,
-                ease: "power2.inOut",
-            })
         }
-    }, {dependencies: [isFadingOut], scope: containerRef});
+    }, { dependencies: [isFadingOut], scope: containerRef });
 
     // Анимация перехода между видео
     useGSAP(() => {
-        if (isMobileDevice) return
-        if (currentVideo === 'second' && !isMobileDevice) {
+        if (currentVideo === 'second') {
             const tl = gsap.timeline();
 
             tl.to(firstVideoRef.current, {
@@ -244,13 +205,11 @@ const Loader = ({
                 ease: "power2.inOut"
             }, "-=0.4");
         }
-    }, {dependencies: [currentVideo, isMobileDevice]});
+    }, { dependencies: [currentVideo] });
 
     // Обработка готовности и обратного отсчета
     useEffect(() => {
-        if (isMobileDevice
-            ? loadingState === 'ready'
-            : loadingState === 'ready' && isVideosPreloaded) {
+        if (loadingState === 'ready' && isVideosPreloaded) {
             console.log('Запуск обратного отсчета');
             const startCountdown = (currentCount: number): void => {
                 if (currentCount <= 0) {
@@ -272,7 +231,7 @@ const Loader = ({
                 clearTimeout(countdownTimerRef.current);
             }
         };
-    }, [loadingState, countdown, isVideosPreloaded, isMobileDevice]);
+    }, [loadingState, countdown, isVideosPreloaded]);
 
     const handleContinue = (): void => {
         if (countdownTimerRef.current) {
@@ -302,52 +261,41 @@ const Loader = ({
             id={'loaderContainer'}
             className={isFadingOut ? 'fade-out' : ''}
         >
-            {/* Показываем видео только на десктопе */}
-            {!isMobileDevice ? (
-                    <VideoContainer>
-                        <VideoBackground
-                            as="video"
-                            ref={firstVideoRef}
-                            muted
-                            loop={false}
-                            playsInline
-                            autoPlay={false}
-                            style={{
-                                opacity: currentVideo === 'first' ? 1 : 0,
-                                zIndex: currentVideo === 'first' ? 2 : 1,
-                            }}
-                            onEnded={() => {
-                                console.log('Первое видео завершено');
-                            }}
-                        >
-                            <source src={firstVideoWEBM} type="video/webm"/>
-                            <source src={firstVideoMP4} type="video/mp4"/>
-                        </VideoBackground>
+            <VideoContainer>
+                <VideoBackground
+                    as="video"
+                    ref={firstVideoRef}
+                    muted
+                    loop={false}
+                    playsInline
+                    autoPlay={false}
+                    style={{
+                        opacity: currentVideo === 'first' ? 1 : 0,
+                        zIndex: currentVideo === 'first' ? 2 : 1,
+                    }}
+                    onEnded={() => {
+                        console.log('Первое видео завершено');
+                    }}
+                >
+                    <source src={firstVideoWEBM} type="video/webm"/>
+                    <source src={firstVideoMP4} type="video/mp4"/>
+                </VideoBackground>
 
-                        <VideoBackground
-                            ref={secondVideoRef}
-                            muted
-                            loop={false}
-                            playsInline
-                            autoPlay={false}
-                            style={{
-                                opacity: currentVideo === 'second' ? 1 : 0,
-                                zIndex: currentVideo === 'second' ? 2 : 1,
-                            }}
-                        >
-                            <source src={secondVideoWEBM} type="video/webm"/>
-                            <source src={secondVideoMP4} type="video/mp4"/>
-                        </VideoBackground>
-                    </VideoContainer>
-                )
-                : (
-                    <VideoContainer>
-                        <ImgBackground
-                            ref={imgRef} // Добавляем ref для анимации
-                            src={TEALogoWEBP}
-                        />
-                    </VideoContainer>
-                )}
+                <VideoBackground
+                    ref={secondVideoRef}
+                    muted
+                    loop={false}
+                    playsInline
+                    autoPlay={false}
+                    style={{
+                        opacity: currentVideo === 'second' ? 1 : 0,
+                        zIndex: currentVideo === 'second' ? 2 : 1,
+                    }}
+                >
+                    <source src={secondVideoWEBM} type="video/webm"/>
+                    <source src={secondVideoMP4} type="video/mp4"/>
+                </VideoBackground>
+            </VideoContainer>
 
             <LoaderContent>
                 <LoaderText
@@ -355,8 +303,7 @@ const Loader = ({
                     className="main-text"
                     ref={mainTextRef}
                 >
-                    <span>TIEFERLIED</span>
-                    <span>ENGLISH ACADEMY</span>
+                    {text}
                 </LoaderText>
                 <LoaderText
                     variant="h6"
@@ -366,9 +313,26 @@ const Loader = ({
                     {subText}
                 </LoaderText>
 
-                {(isMobileDevice
-                    ? loadingState === 'ready'
-                    : loadingState === 'ready' && isVideosPreloaded) && (
+                {/* Дебаг информация*/}
+                {/*<div style={{*/}
+                {/*    position: 'absolute',*/}
+                {/*    top: '10px',*/}
+                {/*    left: '10px',*/}
+                {/*    color: 'white',*/}
+                {/*    fontSize: '12px',*/}
+                {/*    backgroundColor: 'rgba(0,0,0,0.7)',*/}
+                {/*    padding: '10px',*/}
+                {/*    borderRadius: '5px',*/}
+                {/*    zIndex: 1000*/}
+                {/*}}>*/}
+                {/*    <div>First: {isFirstVideoReady ? '✅' : '❌'}</div>*/}
+                {/*    <div>Second: {isSecondVideoReady ? '✅' : '❌'}</div>*/}
+                {/*    <div>Preloaded: {isVideosPreloaded ? '✅' : '❌'}</div>*/}
+                {/*    <div>State: {loadingState}</div>*/}
+                {/*    <div>Countdown: {countdown}</div>*/}
+                {/*</div>*/}
+
+                {(loadingState === 'ready' && isVideosPreloaded) && (
                     <ContinueButton
                         ref={buttonRef}
                         variant="contained"

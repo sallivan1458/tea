@@ -2,7 +2,7 @@ import { styled, Box, Typography } from '@mui/material';
 
 export const StyledGreetingSection = styled(Box)({
     position: 'relative',
-    height: '100vh',
+    height: '100svh',
     overflow: 'hidden',
     '&::before': {
         content: '""',
@@ -20,7 +20,7 @@ export const StyledGreetingSection = styled(Box)({
         bottom: 0,
         left: 0,
         width: '100vw',
-        height: '50vh',
+        height: '50svh',
         background: 'linear-gradient(to top, #010101, transparent)',
         zIndex: 0,
     }
@@ -29,20 +29,23 @@ export const StyledGreetingSection = styled(Box)({
 export const StyledBackgroundImage = styled(Box)({
     position: 'absolute',
     top: 0,
-    left: 0,
+    left: "50%",
     width: '100%',
     height: '100%',
+    transform: 'translateX(-50%)',
     backgroundSize: 'contain',
-    backgroundPosition: 'center center',
+    backgroundPosition: '50% 50%',
     backgroundRepeat: 'no-repeat',
     zIndex: 0,
 
+
     '@media (max-width: 900px)': {
-        backgroundSize: 'cover',
+        width: '250%',
+        backgroundSize: 'contain',
     },
 
     '@media (orientation: portrait)': {
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
     },
 });
 
@@ -65,11 +68,15 @@ export const StyledTypography = styled(Typography)({
     alignItems: 'center',
     flexDirection: 'column',
     willChange: 'transform',
+    fontWeight: 300,
+    '@media (max-width: 400px)': {
+        fontSize: '2.2rem ',
+    }
 });
 
 export const StyledAdditionalBox = styled(Box)({
     position: 'relative',
-    height: '30vh',
+    height: '30svh',
     willChange: 'transform',
     '&::after': {
         content: '""',
@@ -78,7 +85,7 @@ export const StyledAdditionalBox = styled(Box)({
         left: '50%',
         transform:'translateX(-50%)',
         width: '100vw',
-        height: '30vh',
+        height: '30svh',
         background: '#010101',
         zIndex: -1,
         pointerEvents: 'none',

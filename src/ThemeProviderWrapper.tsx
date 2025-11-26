@@ -25,19 +25,23 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
             createTheme({
                 typography: {
                     fontSize: 14,
+                    // fontFamily: "'Playfair Display'",
+                    fontFamily: "'Roboto', sans-serif",
                     h1: {
+                        fontFamily: "'Playfair Display'",
                         fontWeight: 800,
                         fontSize: '4rem', // базовый размер для больших экранов
                         letterSpacing: '0.15rem',
-                        '@media (max-width:900px)': { // для планшетов
+                        '@media (max-width:900px)': {
                             fontSize: '3rem',
                         },
-                        '@media (max-width:600px)': { // для мобильных
+                        '@media (max-width:600px)': {
                             fontSize: '2.5rem',
                             letterSpacing: '0.05rem',
                         },
                     },
                     h2: {
+                        fontFamily: "'Playfair Display'",
                         fontWeight: 700,
                         fontSize: '3rem',
                         letterSpacing: '0.13em',
@@ -49,6 +53,7 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     h3: {
+                        fontFamily: "'Playfair Display'",
                         fontWeight: 600,
                         fontSize: '2.8rem',
                         letterSpacing: '0.09em',
@@ -60,6 +65,7 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     h4: {
+                        fontFamily: "'Playfair Display'",
                         fontWeight: 600,
                         fontSize: '2.6rem',
                         letterSpacing: '0.07em',
@@ -71,6 +77,9 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     h5: {
+                        // fontFamily: "'Source Sans Pro', sans-serif",
+                        // fontFamily: "'Roboto', sans-serif",
+                        fontFamily: "'Playfair Display'",
                         fontWeight: 500,
                         fontSize: '2rem',
                         letterSpacing: '0.06em',
@@ -82,6 +91,9 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     h6: {
+                        // fontFamily: "'Source Sans Pro', sans-serif",
+                        // fontFamily: "'Roboto', sans-serif",
+                        fontFamily: "'Playfair Display'",
                         fontWeight: 450,
                         fontSize: '1.7rem',
                         letterSpacing: '0.05em',
@@ -93,6 +105,8 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     body1: {
+                        // fontFamily: "'Source Sans Pro', sans-serif",
+                        // fontFamily: "'Roboto', sans-serif",
                         fontWeight: 400,
                         fontSize: '1.4rem',
                         letterSpacing: '0.04em',
@@ -104,14 +118,16 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     body2: {
+                        // fontFamily: "'Source Sans Pro', sans-serif",
+                        // fontFamily: "'Roboto', sans-serif",
                         fontWeight: 400,
                         fontSize: '1rem',
                         letterSpacing: '0.04em',
                         '@media (max-width:900px)': {
-                            fontSize: '0.9rem',
+                            fontSize: '0.95rem',
                         },
                         '@media (max-width:600px)': {
-                            fontSize: '0.8rem',
+                            fontSize: '0.9rem',
                         },
                     },
                 },

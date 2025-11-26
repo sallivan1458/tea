@@ -1,5 +1,4 @@
 import GreetingSection from "../../sections/Greeting/GreetingSection.tsx";
-// import EducationSection from "../../sections/Education/EducationSection.tsx";
 import AdvantagesSection from "../../sections/Advantages/AdvantagesSection.tsx";
 import ContactsSection from "../../sections/ContactsSection.tsx";
 import QuestionsSection from "../../sections/QuestionsSection.tsx";
@@ -65,6 +64,7 @@ const HomePage = () => {
             boxSizing: 'border-box',
         }}>
             <GreetingSection id={SectionId.GREETING}/>
+            <AboutMeSection id={SectionId.ABOUT_ME}/>
             <Container
                 component="main"
                 maxWidth="lg"
@@ -73,7 +73,6 @@ const HomePage = () => {
                     overflowX: isTouchDevice ? 'hidden' : 'visible',
                 }}
             >
-                <AboutMeSection id={SectionId.ABOUT_ME}/>
                 <AdvantagesSection id={SectionId.ADVANTAGES}/>
                 <GoodsSection id={SectionId.GOODS}/>
                 <ReviewsSection id={SectionId.REVIEWS}/>

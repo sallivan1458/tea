@@ -24,7 +24,7 @@ const ContactsSection = ({id}:IContactsSectionProps) => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 height: '150px',
-                pb:'20vh'
+                pb:'20lvh'
             }}>
             <Typography
                 variant="h6"

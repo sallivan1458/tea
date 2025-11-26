@@ -1,13 +1,9 @@
 import {useState} from 'react';
 import {Typography, Box, IconButton, useMediaQuery} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import {CardGoodsProps} from "../description.ts";
 
-export interface CardGoodsProps {
-    image?: string;
-    text?: string[];
-    title?: string;
-    price?: number;
-}
+
 
 export const CardGoods = ({
                               title = 'Standart',

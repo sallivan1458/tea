@@ -11,7 +11,7 @@ export const AboutMeContainer = styled(Box)({
     justifyContent: 'center',
     position: 'relative',
     willChange: 'transform',
-    marginBottom: '20vh',
+    marginBottom: '20lvh',
     '&::before': {
         content: '""',
         position: 'fixed',
@@ -19,7 +19,7 @@ export const AboutMeContainer = styled(Box)({
         left: '50%',
         transform:'translateX(-50%)',
         width: '100vw',
-        height: '100vh',
+        height: '100lvh',
         background: 'linear-gradient(to bottom, #010101 0%, transparent 100%)',
         zIndex: -1,
         pointerEvents: 'none',
@@ -76,7 +76,7 @@ export const Photo = styled('img')(({theme}) => ({
     borderRadius: '20px',
     objectFit: 'contain',
     opacity: '0',
-    width: '50%',
+    width: '100%',
     [theme.breakpoints.up('md')]: {
         width: '100%',
     },
@@ -102,7 +102,7 @@ export const InfoBlock = styled(Box)(({ theme }) => ({
 
 export const ScrollableContent = styled(Box)({
     flex: 1,
-    maxHeight: 'calc(80vh - 120px)',
+    maxHeight: 'calc(80lvh - 120px)',
     '&::-webkit-scrollbar': {
         width: '4px',
     },

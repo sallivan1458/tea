@@ -1,13 +1,20 @@
-import {CardGoodsProps} from "components/CardGoods.tsx";
 import standartTEA from "./assets/standardTEA.webp";
 import personalTEA from "./assets/personalTEA.webp";
 import examTEA from "./assets/examTEA.webp";
-import {QuestionCardProps} from "components/CardQuestion.tsx";
 import DimaZvedov from "./assets/standardTEA.webp";
-import MihailBardashPNG from "./assets/personalTEA.jpg";
+import MihailBardashPNG from "./assets/personalTEA.webp";
 import bogdanJPG from "./assets/bogomDAN.jpg";
-import {IReview} from "./sections/Reviews/ReviewsSection.tsx";
+import indApprWEBP from "./assets/IndividualApproach.webp";
+import speakingWEBP from "./assets/conversationalPractice.webp";
+import platformWEBP from "./assets/platform.webp";
 
+
+export interface CardGoodsProps {
+    image?: string;
+    text?: string[];
+    title?: string;
+    price?: number;
+}
 export const goods: CardGoodsProps[] = [
     {
         price: 1500,
@@ -47,6 +54,10 @@ export const goods: CardGoodsProps[] = [
 ]
 
 
+export interface QuestionCardProps {
+    text?: string;
+    title?: string;
+}
 export const questions: QuestionCardProps[] = [
     {title: '01 Сколько длиться одно занятие?', text: 'Есть всего два формата 1ч и 1.5ч'},
     {title: '02 Что делать если я хочу перенести урок?', text: 'Для переноса или отмены урока нужно сообщить за 24 часа, в иных случаях отмена будет платной'},
@@ -60,7 +71,13 @@ export const questions: QuestionCardProps[] = [
 
 
 
-
+export interface IReview {
+    id: string;
+    title: string;
+    description: string;
+    date: string;
+    image: string;
+}
 export const reviews: IReview[] = [
     {
         id: '1',
@@ -98,6 +115,29 @@ export const reviews: IReview[] = [
     }
 ];
 
+
+interface IAdvantageBlock {
+    picture: string;
+    title: string;
+    description: string;
+}
+export const advantagesBlocks: IAdvantageBlock[] = [
+    {
+        picture: indApprWEBP,
+        title: '01 Подход к уроку',
+        description: 'Индивидуальные уроки для каждого ученика специально подобранные под его уровень'
+    },
+    {
+        picture: speakingWEBP,
+        title: '02 Много разговорной практики',
+        description: 'Уже за первую неделю придет понимание английского языка и уже через месяц вы сможете на нем говорить'
+    },
+    {
+        picture: platformWEBP,
+        title: '03 Удобная платформа',
+        description: 'Удобнейшая платформа, на которой можно выполнять как интерактивные задания, так и запоминать слова'
+    },
+];
 
 
 
