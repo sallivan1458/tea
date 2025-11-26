@@ -2,7 +2,7 @@ import { styled, Box, Typography } from '@mui/material';
 
 export const StyledGreetingSection = styled(Box)({
     position: 'relative',
-    height: '100svh',
+    height: 'calc(var(--vh, 1vh) * 100)',
     overflow: 'hidden',
     '&::before': {
         content: '""',
@@ -20,18 +20,19 @@ export const StyledGreetingSection = styled(Box)({
         bottom: 0,
         left: 0,
         width: '100vw',
-        height: '50svh',
+        height: 'calc(var(--vh, 1vh) * 50)',
         background: 'linear-gradient(to top, #010101, transparent)',
         zIndex: 0,
     }
 });
 
+
 export const StyledBackgroundImage = styled(Box)({
     position: 'absolute',
     top: 0,
     left: "50%",
+    height: 'calc(var(--vh, 1vh) * 100)',
     width: '100%',
-    height: '100%',
     transform: 'translateX(-50%)',
     backgroundSize: 'contain',
     backgroundPosition: '50% 50%',
@@ -76,7 +77,7 @@ export const StyledTypography = styled(Typography)({
 
 export const StyledAdditionalBox = styled(Box)({
     position: 'relative',
-    height: '30svh',
+    height: 'calc(var(--vh, 1vh) * 30)',
     willChange: 'transform',
     '&::after': {
         content: '""',
@@ -85,7 +86,7 @@ export const StyledAdditionalBox = styled(Box)({
         left: '50%',
         transform:'translateX(-50%)',
         width: '100vw',
-        height: '30svh',
+        height: 'calc(var(--vh, 1vh) * 30)',
         background: '#010101',
         zIndex: -1,
         pointerEvents: 'none',

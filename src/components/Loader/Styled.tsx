@@ -19,7 +19,7 @@ export const LoaderContainer = styled(Box)(({ theme }) => ({
     top: 0,
     left: 0,
     width: '100vw',
-    height: '100vh',
+    height: '100lvh',
     background: '#000000',
     display: 'flex',
     flexDirection: 'column',
@@ -40,7 +40,7 @@ export const LoaderContent = styled(Box)({
     alignItems: 'center',
     gap: '2rem',
     textAlign: 'center',
-    paddingTop:'20vh'
+    paddingTop:'20lvh'
 });
 
 export const LoaderText = styled(Typography)({

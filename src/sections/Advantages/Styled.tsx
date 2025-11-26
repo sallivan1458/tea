@@ -10,22 +10,22 @@ interface StyledImageBlockProps {
 }
 
 export const StyledAdvantagesSection = styled(Box)(({ theme }) => ({
-    minHeight: '160lvh',
-    marginBottom: '20lvh',
+    minHeight: 'calc(var(--vh, 1vh) * 160)',
+    marginBottom: 'calc(var(--vh, 1vh) * 20)',
     [theme.breakpoints.down('md')]: {
         minHeight: 'auto',
-        marginBottom: '10lvh',
+        marginBottom: 'calc(var(--vh, 1vh) * 10)',
     },
 }));
 
 export const StyledTitle = styled(Typography)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: '10lvh',
-    paddingTop: '5lvh',
+    marginBottom: 'calc(var(--vh, 1vh) * 10)',
+    paddingTop: 'calc(var(--vh, 1vh) * 5)',
     [theme.breakpoints.down('md')]: {
-        marginBottom: '5vh',
-        paddingTop: '2vh',
+        marginBottom: 'calc(var(--vh, 1vh) * 5)',
+        paddingTop: 'calc(var(--vh, 1vh) * 2)',
     },
 }));
 
@@ -35,26 +35,26 @@ export const StyledAdvantageBlock = styled(Box, {
     height: '500px',
     display: 'grid',
     gridTemplateColumns: isImageOnLeft ? '2fr 1fr' : '1fr 2fr',
-    gap: '10lvh',
+    gap: 'calc(var(--vh, 1vh) * 10)',
     alignItems: 'start',
-    marginBottom: '10lvh',
+    marginBottom: 'calc(var(--vh, 1vh) * 10)',
     [theme.breakpoints.down('xl')]: {
-        gap: '5lvh',
-        marginBottom: '5lvh',
+        gap: 'calc(var(--vh, 1vh) * 5)',
+        marginBottom: 'calc(var(--vh, 1vh) * 5)',
     },
 
     [theme.breakpoints.down('md')]: {
         gridTemplateColumns: isImageOnLeft ? '3fr 2fr' : '2fr 3fr',
-        gap: '5lvh',
-        marginBottom: '5lvh',
+        gap: 'calc(var(--vh, 1vh) * 5)',
+        marginBottom: 'calc(var(--vh, 1vh) * 5)',
     },
 
     [theme.breakpoints.down('sm')]: {
         height: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        gap: '5lvh',
-        marginBottom: '5lvh',
+        gap: 'calc(var(--vh, 1vh) * 5)',
+        marginBottom: 'calc(var(--vh, 1vh) * 5)',
     },
 
 }));

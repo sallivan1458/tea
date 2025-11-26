@@ -1,5 +1,5 @@
 import {useRef} from 'react';
-import tieferliedIMG from '/assets/startLogo.png'
+import tieferliedWEBP from '../../assets/greetingLogo.webp'
 import {
     StyledGreetingSection,
     StyledContentBox,
@@ -30,12 +30,12 @@ const GreetingSection = ({id}: IGreetingSectionProps) => {
             y: -80,
             opacity: 1
         }, {
-            y: -300,
+            y: -280,
             opacity: 0,
             scrollTrigger: {
                 trigger: greetingSection.current,
                 start: '0% 0%',
-                end: 'bottom top',
+                end: 'bottom 20%',
                 scrub: true,
             }
         });
@@ -50,7 +50,7 @@ const GreetingSection = ({id}: IGreetingSectionProps) => {
                 {/* Фоновое изображение */}
                 <StyledBackgroundImage
                     style={{
-                        backgroundImage: `url(${tieferliedIMG})`
+                        backgroundImage: `url(${tieferliedWEBP})`
                     }}
                 />
 

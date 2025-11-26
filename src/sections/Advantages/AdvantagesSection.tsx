@@ -35,15 +35,13 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
     const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice');
     const isMin600Width = useMediaQuery('(min-width:600px)');
 
+    const isContentReady = useAppSelector(state => state.gsapState.isContentReady)
+    console.log('isContentReady',isContentReady)
     useGSAP(() => {
-        // --- 1. Устанавливаем начальные состояния мгновенно ---
-
-        // Для заголовка:
         if (advantagesTitle.current) {
             gsap.set(advantagesTitle.current, { opacity: 0, y: 20 });
         }
 
-        // Для блоков:
         advantageRefs.current.forEach((blockRef, index) => {
             if (blockRef) {
                 const isImageOnLeft = index % 2 === 0;

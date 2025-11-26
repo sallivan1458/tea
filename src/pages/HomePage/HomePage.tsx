@@ -57,6 +57,28 @@ const HomePage = () => {
         dispatch(setLoading('ready'));
     }, [dispatch]);
 
+    useEffect(() => {
+        // Принудительно обновляем ScrollTrigger после монтирования и небольшой задержки
+        const handleLoad = () => {
+            // Небольшая задержка может помочь, но главное - дождаться загрузки ресурсов
+            setTimeout(() => {
+                console.log('Window loaded, refreshing ScrollTrigger');
+                ScrollTrigger.refresh();
+            }, 500); // 500ms задержки для надежности
+        };
+
+        // Можно использовать событие 'load' на window для гарантии загрузки всех ресурсов
+        if (typeof window !== 'undefined') {
+            window.addEventListener('load', handleLoad);
+        }
+
+        return () => {
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('load', handleLoad);
+            }
+        };
+    }, []);
+
     return (
         <div ref={container} style={{
             padding: 0,

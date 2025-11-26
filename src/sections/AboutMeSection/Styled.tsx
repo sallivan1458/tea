@@ -11,7 +11,7 @@ export const AboutMeContainer = styled(Box)({
     justifyContent: 'center',
     position: 'relative',
     willChange: 'transform',
-    marginBottom: '20lvh',
+    marginBottom: 'calc(var(--vh, 1vh) * 20)',
     '&::before': {
         content: '""',
         position: 'fixed',
@@ -19,7 +19,7 @@ export const AboutMeContainer = styled(Box)({
         left: '50%',
         transform:'translateX(-50%)',
         width: '100vw',
-        height: '100lvh',
+        height: 'calc(var(--vh, 1vh) * 100)',
         background: 'linear-gradient(to bottom, #010101 0%, transparent 100%)',
         zIndex: -1,
         pointerEvents: 'none',
@@ -102,7 +102,7 @@ export const InfoBlock = styled(Box)(({ theme }) => ({
 
 export const ScrollableContent = styled(Box)({
     flex: 1,
-    maxHeight: 'calc(80lvh - 120px)',
+    maxHeight: 'calc(var(--vh, 1vh) * 80 - 120px)',
     '&::-webkit-scrollbar': {
         width: '4px',
     },

@@ -1,6 +1,5 @@
 import NavigateSection from "components/NavigateSection/NavigateSection.tsx";
 import {Outlet} from "react-router-dom";
-import {useMediaQuery} from "@mui/material";
 import {ScrollSmoother} from 'gsap/ScrollSmoother';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {useRef} from "react";
@@ -16,7 +15,7 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 const Layout = () => {
     const smootherWrapperRef = useRef<HTMLDivElement>(null);
     const smootherContentRef = useRef<HTMLDivElement>(null);
-    const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
+    const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice');
 
     const isContentReady = useAppSelector(state => state.gsapState.isContentReady);
 
@@ -26,9 +25,6 @@ const Layout = () => {
         contentRef: smootherContentRef,
     });
 
-    const mainContent = (
-        <Outlet/>
-    );
 
     return (
         <>
@@ -42,11 +38,11 @@ const Layout = () => {
             {!isTouchDevice ? (
                 <div id="smooth-wrapper" ref={smootherWrapperRef}>
                     <div id="smooth-content" ref={smootherContentRef}>
-                        {mainContent}
+                        <Outlet/>
                     </div>
                 </div>
             ) : (
-                mainContent
+                <Outlet/>
             )}
         </>
     );

@@ -26,12 +26,9 @@ export const useGsapSmoother = ({
 
     useEffect(() => {
         if (isContentReady && wrapperRef.current && contentRef.current) {
-            // Убиваем предыдущий инстанс, если он существует
             if (smootherInstance.current) {
                 smootherInstance.current.kill();
             }
-
-            // Создаем новый smoother
             smootherInstance.current = ScrollSmoother.create({
                 wrapper: wrapperRef.current,
                 content: contentRef.current,
@@ -41,7 +38,6 @@ export const useGsapSmoother = ({
                 ignoreMobileResize,
             });
 
-            // Обновляем ScrollTrigger
             ScrollTrigger.refresh();
         }
 

@@ -8,6 +8,7 @@ import {gsap} from 'gsap'
 import {setDeviceType} from "./store/DeviceStateSlice.ts";
 import {useMediaQuery} from "@mui/material";
 import Loader from "components/Loader/Loader.tsx";
+import {setAppHeight} from "./utils/viewportHeight.ts";
 
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage.tsx'));
@@ -30,6 +31,19 @@ function App() {
             nullTargetWarn: false,
         });
     }, []);
+
+    useEffect(() => {
+        setAppHeight();
+        if (!isTouchDevice) {
+            console.log('не тач уст')
+            // Также подписываемся на изменение размера окна (например, поворот устройства)
+            window.addEventListener('resize', setAppHeight);
+            // Очистка слушателя при размонтировании компонента
+            return () => {
+                window.removeEventListener('resize', setAppHeight);
+            };
+        }
+    }, [isTouchDevice]);
 
 
 

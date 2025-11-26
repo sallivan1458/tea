@@ -24,7 +24,7 @@ function NavigateSection() {
 
     const dispatch = useAppDispatch();
     const activeSection = useAppSelector(state => state.gsapState.activeSection);
-    const isLoadingSucess = useAppSelector(state => state.loading.loading === 'success')
+    const isLoadingSuccess = useAppSelector(state => state.loading.loading === 'success')
 
     const isMobile = useMediaQuery('(max-width:900px)');
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -121,12 +121,11 @@ function NavigateSection() {
     }, []);
 
     useGSAP(() => {
-
         gsap.set(navigateContainerRef.current,{
             y: -180,
         })
 
-        if (!isLoadingSucess) {
+        if (!isLoadingSuccess) {
             return
         }
 
@@ -137,7 +136,7 @@ function NavigateSection() {
             duration: 1.3,
             ease: 'power4.out',
         });
-    }, {scope: navigateContainerRef, dependencies: [isLoadingSucess]});
+    }, {scope: navigateContainerRef, dependencies: [isLoadingSuccess]});
 
     return (
         <StyledAppBar ref={navigateContainerRef} position="fixed">

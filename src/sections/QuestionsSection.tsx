@@ -67,7 +67,7 @@ const QuestionsSection = ({id}:IQuestionsSectionProps) => {
             id={id}
             ref={questionsSection}
             sx={{
-                mb: '20lvh',
+                mb: 'calc(var(--vh, 1vh) * 20)',
                 willChange: 'transform'
             }}
         >
@@ -78,7 +78,7 @@ const QuestionsSection = ({id}:IQuestionsSectionProps) => {
                     display: 'flex',
                     justifyContent: 'center',
                     willChange: 'opacity, transform',
-                    mb: '10lvh'
+                    mb: 'calc(var(--vh, 1vh) * 10)'
                 }}
             >
                 Вопросы?

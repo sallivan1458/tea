@@ -28,7 +28,6 @@ const Loader = ({
 
     const loadingState = useAppSelector(state => state.loading.loading)
     const dispatch = useAppDispatch()
-    const [isFadingOut, setIsFadingOut] = useState(false);
     const [countdown, setCountdown] = useState(5);
     const [currentVideo, setCurrentVideo] = useState<'first' | 'second'>('first');
     const [isFirstVideoReady, setIsFirstVideoReady] = useState(false);
@@ -55,7 +54,7 @@ const Loader = ({
     useEffect(() => {
         if (isMobileDevice) return
         if (isFirstVideoReady && isSecondVideoReady && !isVideosPreloaded) {
-            console.log('Оба видео готовы, устанавливаем isVideosPreloaded = true');
+            // console.log('Оба видео готовы, устанавливаем isVideosPreloaded = true');
             setIsVideosPreloaded(true);
         }
     }, [isFirstVideoReady, isSecondVideoReady, isVideosPreloaded, isMobileDevice]);
@@ -63,7 +62,7 @@ const Loader = ({
     // Предзагрузка видео - ЗАПУСКАЕТСЯ ТОЛЬКО ОДИН РАЗ
     useEffect(() => {
         if (isMobileDevice) return
-        console.log("Инициализация загрузки видео");
+        // console.log("Инициализация загрузки видео");
 
         const firstVideoElement = firstVideoRef.current;
         const secondVideoElement = secondVideoRef.current;
@@ -74,7 +73,7 @@ const Loader = ({
             firstVideoElement.muted = true;
 
             const handleFirstVideoReady = () => {
-                console.log('firstVideoReady');
+                // console.log('firstVideoReady');
                 setIsFirstVideoReady(true);
             };
 
@@ -87,7 +86,7 @@ const Loader = ({
             secondVideoElement.muted = true;
 
             const handleSecondVideoReady = () => {
-                console.log('secondVideoReady');
+                // console.log('secondVideoReady');
                 setIsSecondVideoReady(true);
             };
 
@@ -101,11 +100,11 @@ const Loader = ({
         if (isMobileDevice) return
         if (isVideosPreloaded && firstVideoRef.current && !isMobileDevice) {
             firstVideoRef.current.muted = true;
-            console.log('Запуск первого видео');
+            // console.log('Запуск первого видео');
             const playFirstVideo = async () => {
                 try {
                     await firstVideoRef.current?.play();
-                    console.log('Первое видео воспроизводится');
+                    // console.log('Первое видео воспроизводится');
                 } catch (error) {
                     console.error('Ошибка воспроизведения первого видео:', error);
                 }
@@ -119,7 +118,7 @@ const Loader = ({
     useEffect(() => {
         if (isMobileDevice) return
         if (loadingState === 'lastSecond' && isSecondVideoReady && !isMobileDevice) {
-            console.log('Переключение на второе видео');
+            // console.log('Переключение на второе видео');
             const switchToSecondVideo = async () => {
                 setCurrentVideo('second');
 
@@ -188,7 +187,7 @@ const Loader = ({
         if (isMobileDevice
             ? loadingState === 'ready'
             : loadingState === 'ready' && isVideosPreloaded) {
-            console.log('Анимация появления кнопки');
+            // console.log('Анимация появления кнопки');
             const tl = gsap.timeline();
             tl.fromTo(buttonRef.current,
                 {
@@ -209,7 +208,7 @@ const Loader = ({
 
     // Анимация исчезновения
     useGSAP(() => {
-        if (isFadingOut) {
+        if (loadingState === 'lastSecond') {
             const tl = gsap.timeline();
             tl.to([mainTextRef.current, subTextRef.current, buttonRef.current], {
                 opacity: 0,
@@ -220,13 +219,13 @@ const Loader = ({
             });
             gsap.to(imgRef.current, {
                 opacity: 0,
-                scale: 0.9,
+                // scale: 0.9,
                 delay:0.2,
                 duration: 1,
                 ease: "power2.inOut",
             })
         }
-    }, {dependencies: [isFadingOut], scope: containerRef});
+    }, {dependencies: [loadingState], scope: containerRef});
 
     // Анимация перехода между видео
     useGSAP(() => {
@@ -251,7 +250,7 @@ const Loader = ({
         if (isMobileDevice
             ? loadingState === 'ready'
             : loadingState === 'ready' && isVideosPreloaded) {
-            console.log('Запуск обратного отсчета');
+            // console.log('Запуск обратного отсчета');
             const startCountdown = (currentCount: number): void => {
                 if (currentCount <= 0) {
                     handleContinue();
@@ -279,7 +278,6 @@ const Loader = ({
             clearTimeout(countdownTimerRef.current);
         }
 
-        setIsFadingOut(true);
         dispatch(setLoading('lastSecond'));
 
         setTimeout(() => {
@@ -300,7 +298,7 @@ const Loader = ({
         <LoaderContainer
             ref={containerRef}
             id={'loaderContainer'}
-            className={isFadingOut ? 'fade-out' : ''}
+            className={loadingState === 'lastSecond' ? 'fade-out' : ''}
         >
             {/* Показываем видео только на десктопе */}
             {!isMobileDevice ? (
@@ -317,7 +315,7 @@ const Loader = ({
                                 zIndex: currentVideo === 'first' ? 2 : 1,
                             }}
                             onEnded={() => {
-                                console.log('Первое видео завершено');
+                                // console.log('Первое видео завершено');
                             }}
                         >
                             <source src={firstVideoWEBM} type="video/webm"/>
