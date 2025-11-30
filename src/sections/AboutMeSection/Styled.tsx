@@ -17,7 +17,7 @@ export const AboutMeContainer = styled(Box)({
         position: 'fixed',
         top: 0,
         left: '50%',
-        transform:'translateX(-50%)',
+        transform: 'translateX(-50%)',
         width: '100vw',
         height: 'calc(var(--vh, 1vh) * 100)',
         background: 'linear-gradient(to bottom, #010101 0%, transparent 100%)',
@@ -33,10 +33,10 @@ export const AboutMeTitle = styled(Typography)({
     marginBottom: '30px',
 });
 
-export const ContentWrapper = styled(Box)(({ theme }) => ({
+export const ContentWrapper = styled(Box)(({theme}) => ({
     display: 'flex',
     alignItems: 'flex-start',
-    gap: theme.spacing(4),
+    gap: theme.spacing(6),
     width: '100%',
     [theme.breakpoints.down('md')]: {
         flexDirection: 'column-reverse',
@@ -48,10 +48,12 @@ export const ContentWrapper = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const TextContent = styled(Box)(({ theme }) => ({
-    flex: 1,
+export const TextContent = styled(Box)(({theme}) => ({
+    flex: 4,
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'flex-start',
+
     gap: theme.spacing(2),
     [theme.breakpoints.down('md')]: {
         alignItems: 'center',
@@ -60,15 +62,35 @@ export const TextContent = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const PhotoContainer = styled(Box)(({ theme }) => ({
+export const NameTypography = styled(Typography)({
+    fontWeight: 'bold',
+    color: 'primary.main',
+    mb: 1,
+    opacity: '0',
+});
+
+
+export const PhotoContainer = styled(Box)({
+    flex: 3,
+    position: 'relative',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-        flex: '0 0 35%',
+    '&::after': {
+        content: '""',
+        position: 'absolute',
+        bottom: '0%',
+        left: '-8%',
+        right: '-8%',
+        height: '100%',
+        background: 'linear-gradient(to top, rgba(25,118,210,0.09) 5%,  transparent 80%)',
+        borderRadius: '50%',
+        filter: 'blur(8px)',
+        pointerEvents: 'none',
+        zIndex: 1,
     },
-}));
+});
 
 export const Photo = styled('img')(({theme}) => ({
     height: 'auto',
@@ -77,12 +99,15 @@ export const Photo = styled('img')(({theme}) => ({
     objectFit: 'contain',
     opacity: '0',
     width: '100%',
+    position: 'relative',
+    zIndex: 2,
+
     [theme.breakpoints.up('md')]: {
         width: '100%',
     },
 }));
 
-export const InfoBlock = styled(Box)(({ theme }) => ({
+export const InfoBlock = styled(Box)(({theme}) => ({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     backdropFilter: 'blur(10px)',
     padding: theme.spacing(2),

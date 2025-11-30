@@ -81,7 +81,7 @@ const QuestionsSection = ({id}:IQuestionsSectionProps) => {
                     mb: 'calc(var(--vh, 1vh) * 10)'
                 }}
             >
-                Вопросы?
+                FAQs
             </Typography>
 
             <Box

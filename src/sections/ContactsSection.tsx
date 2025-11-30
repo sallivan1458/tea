@@ -1,18 +1,11 @@
-import {Typography, Box} from '@mui/material';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import MailIcon from '@mui/icons-material/Mail';
-
+import {Typography, Box, Tooltip} from '@mui/material';
+import {contacts} from "../description.ts";
 
 interface IContactsSectionProps {
-    id:string
+    id: string
 }
 
-const ContactsSection = ({id}:IContactsSectionProps) => {
-    // const сontactSection = useRef(null)
-    // const contactTitle = useRef(null)
-
+const ContactsSection = ({id}: IContactsSectionProps) => {
 
     return (
         <Box
@@ -24,11 +17,11 @@ const ContactsSection = ({id}:IContactsSectionProps) => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 height: '150px',
-                pb:'calc(var(--vh, 1vh) * 20)'
+                pb: 'calc(var(--vh, 1vh) * 20)'
             }}>
             <Typography
                 variant="h6"
-                sx={{mb:1}}
+                sx={{mb: 1}}
             >
                 Связь со мной
             </Typography>
@@ -39,53 +32,22 @@ const ContactsSection = ({id}:IContactsSectionProps) => {
                     gap: 3,
                 }}
             >
-                <WhatsAppIcon
-                    fontSize="large"
-                    sx={{
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                            transform: 'scale(1.1)',
-                            color: '#25D366',
-                        }
-                    }}
-                />
-
-                <TelegramIcon
-                    fontSize="large"
-                    sx={{
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                            transform: 'scale(1.1)',
-                            color: '#0088cc',
-                        }
-                    }}
-                />
-
-                <InstagramIcon
-                    fontSize="large"
-                    sx={{
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                            transform: 'scale(1.1)',
-                            color: '#E1306C',
-                        }
-                    }}
-                />
-
-                <MailIcon
-                    fontSize="large"
-                    sx={{
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                            transform: 'scale(1.1)',
-                            color: '#eadb35',
-                        }
-                    }}
-                />
+                {contacts.map(({icon: Icon, title, action, color}) => (
+                    <Tooltip key={title} title={title} arrow>
+                        <Icon
+                            fontSize="large"
+                            onClick={action}
+                            sx={{
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                '&:hover': {
+                                    transform: 'scale(1.2)',
+                                    color: color,
+                                }
+                            }}
+                        />
+                    </Tooltip>
+                ))}
             </Box>
         </Box>
     );

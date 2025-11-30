@@ -70,8 +70,12 @@ export const StyledTypography = styled(Typography)({
     flexDirection: 'column',
     willChange: 'transform',
     fontWeight: 300,
+    fontFamily: "'Playfair Display'",
     '@media (max-width: 400px)': {
         fontSize: '2.2rem ',
+    },
+    '@media (max-width: 350px)': {
+        fontSize: '1.8rem ',
     }
 });
 

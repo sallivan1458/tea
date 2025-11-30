@@ -7,7 +7,7 @@ import ReviewsSection from "../../sections/Reviews/ReviewsSection.tsx";
 import {useAppDispatch, useAppSelector} from "../../store/store.ts";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {setActiveSection, setContentReady} from "../../store/gsapSlice.ts";
-import {useEffect, useRef} from "react";
+import {useEffect, useLayoutEffect, useRef} from "react";
 import {useGSAP} from "@gsap/react";
 import {Container} from "@mui/material";
 import AboutMeSection from "../../sections/AboutMeSection/AboutMeSection.tsx";
@@ -57,26 +57,20 @@ const HomePage = () => {
         dispatch(setLoading('ready'));
     }, [dispatch]);
 
-    useEffect(() => {
-        // Принудительно обновляем ScrollTrigger после монтирования и небольшой задержки
-        const handleLoad = () => {
-            // Небольшая задержка может помочь, но главное - дождаться загрузки ресурсов
+    useLayoutEffect(() => {
+        // Ждем когда все изображения загрузятся
+        Promise.all(
+            Array.from(document.images)
+                .filter(img => !img.complete)
+                .map(img => new Promise(resolve => {
+                    img.onload = img.onerror = resolve;
+                }))
+        ).then(() => {
             setTimeout(() => {
-                console.log('Window loaded, refreshing ScrollTrigger');
                 ScrollTrigger.refresh();
-            }, 500); // 500ms задержки для надежности
-        };
-
-        // Можно использовать событие 'load' на window для гарантии загрузки всех ресурсов
-        if (typeof window !== 'undefined') {
-            window.addEventListener('load', handleLoad);
-        }
-
-        return () => {
-            if (typeof window !== 'undefined') {
-                window.removeEventListener('load', handleLoad);
-            }
-        };
+                // console.log('ScrollTrigger refreshed after images load');
+            }, 100);
+        });
     }, []);
 
     return (

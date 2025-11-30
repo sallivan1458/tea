@@ -7,6 +7,8 @@ import bogdanJPG from "./assets/bogomDAN.jpg";
 import indApprWEBP from "./assets/IndividualApproach.webp";
 import speakingWEBP from "./assets/conversationalPractice.webp";
 import platformWEBP from "./assets/platform.webp";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import TelegramIcon from "@mui/icons-material/Telegram";
 
 
 export interface CardGoodsProps {
@@ -164,3 +166,27 @@ export const buttons = [
 ] as const;
 
 export const scrollSections = Object.values(SectionId);
+
+
+
+
+export const contacts = [
+    {
+        icon: WhatsAppIcon,
+        title: 'Написать в WhatsApp',
+        action: () => window.open('https://wa.me/12341234'),
+        color: '#25D366'
+    },
+    {
+        icon: TelegramIcon,
+        title: 'Написать в Telegram',
+        action: () => window.open(`https://t.me/${'12341234'}?text=${'Здраствуйте хотел бы с вами начать заниматься, когда можно будет провести пробное занятие?'}`),
+        color: '#0088cc'
+    },
+    // {
+    //     icon: MailIcon,
+    //     title: 'Написать на почту',
+    //     action: () => window.open('mailto:your@email.com'),
+    //     color: '#eadb35'
+    // }
+];

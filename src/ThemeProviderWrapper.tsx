@@ -4,6 +4,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { useAppSelector } from "./store/store.ts";
 import { alpha } from '@mui/material/styles';
 
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/800.css';
+
 declare module '@mui/material/styles' {
     interface Palette {
         inputBackground: Palette['primary'];
@@ -26,7 +33,8 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                 typography: {
                     fontSize: 14,
                     // fontFamily: "'Playfair Display'",
-                    fontFamily: "'Roboto', sans-serif",
+                    // fontFamily: "'Playfair Display'",
+                    fontFamily: "Inter",
                     h1: {
                         fontFamily: "'Playfair Display'",
                         fontWeight: 800,
@@ -41,8 +49,8 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     h2: {
-                        fontFamily: "'Playfair Display'",
-                        fontWeight: 700,
+                        // fontFamily: "'Playfair Display'",
+                        fontWeight: 800,
                         fontSize: '3rem',
                         letterSpacing: '0.13em',
                         '@media (max-width:900px)': {
@@ -53,9 +61,9 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     h3: {
-                        fontFamily: "'Playfair Display'",
+                        // fontFamily: "'Playfair Display'",
                         fontWeight: 600,
-                        fontSize: '2.8rem',
+                        fontSize: '2.6rem',
                         letterSpacing: '0.09em',
                         '@media (max-width:900px)': {
                             fontSize: '2.3rem',
@@ -65,7 +73,7 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                         },
                     },
                     h4: {
-                        fontFamily: "'Playfair Display'",
+                        // fontFamily: "'Playfair Display'",
                         fontWeight: 600,
                         fontSize: '2.6rem',
                         letterSpacing: '0.07em',
@@ -79,7 +87,7 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                     h5: {
                         // fontFamily: "'Source Sans Pro', sans-serif",
                         // fontFamily: "'Roboto', sans-serif",
-                        fontFamily: "'Playfair Display'",
+                        // fontFamily: "'Playfair Display'",
                         fontWeight: 500,
                         fontSize: '2rem',
                         letterSpacing: '0.06em',
@@ -93,7 +101,7 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                     h6: {
                         // fontFamily: "'Source Sans Pro', sans-serif",
                         // fontFamily: "'Roboto', sans-serif",
-                        fontFamily: "'Playfair Display'",
+                        // fontFamily: "'Playfair Display'",
                         fontWeight: 450,
                         fontSize: '1.7rem',
                         letterSpacing: '0.05em',

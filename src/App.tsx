@@ -35,10 +35,8 @@ function App() {
     useEffect(() => {
         setAppHeight();
         if (!isTouchDevice) {
-            console.log('не тач уст')
-            // Также подписываемся на изменение размера окна (например, поворот устройства)
+            // console.log('not touch device');
             window.addEventListener('resize', setAppHeight);
-            // Очистка слушателя при размонтировании компонента
             return () => {
                 window.removeEventListener('resize', setAppHeight);
             };

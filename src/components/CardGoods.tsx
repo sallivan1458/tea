@@ -3,8 +3,6 @@ import {Typography, Box, IconButton, useMediaQuery} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import {CardGoodsProps} from "../description.ts";
 
-
-
 export const CardGoods = ({
                               title = 'Standart',
                               text = ['индивидуальный подход'],
@@ -41,44 +39,38 @@ export const CardGoods = ({
                 }),
             }}
         >
-            {/* Фоновое изображение с круговым размытием */}
-            {image && (
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        zIndex: 1,
-                        '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundImage: `url(${image})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                            zIndex: 1,
-                        },
-                        '&::after': {
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            background: 'radial-gradient(circle, transparent 30%, rgba(0,0,0,0.9) 90%)',
-                            zIndex: 2,
-                            mask: 'radial-gradient(circle, transparent 40%, black 90%)',
-                            WebkitMask: 'radial-gradient(circle, transparent 40%, black 90%)',
-                        }
-                    }}
-                />
-            )}
+            {/* Фоновое изображение с использованием компонента Box как img */}
+            <Box
+                component="img"
+                src={image}
+                alt={title}
+                sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    zIndex: 1,
+                }}
+            />
+
+            {/* Градиентное наложение */}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'radial-gradient(circle, transparent 30%, rgba(0,0,0,0.9) 90%)',
+                    zIndex: 2,
+                    mask: 'radial-gradient(circle, transparent 40%, black 90%)',
+                    WebkitMask: 'radial-gradient(circle, transparent 40%, black 90%)',
+                }}
+            />
 
             {/* Верхняя часть с заголовком и кнопкой */}
             <Box
@@ -93,7 +85,7 @@ export const CardGoods = ({
             >
                 {/* Заголовок */}
                 <Typography
-                    variant={isWidth900_1000? 'h6': 'h5'}
+                    variant={isWidth900_1000 ? 'h6' : 'h5'}
                     sx={{
                         fontWeight: 'bold',
                         color: 'white',

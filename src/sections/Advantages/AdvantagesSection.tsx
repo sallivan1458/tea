@@ -1,7 +1,7 @@
 import {useRef} from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {useGSAP} from '@gsap/react';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
 import {
     StyledAdvantagesSection,
@@ -24,10 +24,7 @@ interface IAdvantagesSectionProps {
 }
 
 
-
-
-
-const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
+const AdvantagesSection = ({id}: IAdvantagesSectionProps) => {
     const advantagesSection = useRef<HTMLDivElement>(null);
     const advantagesTitle = useRef<HTMLHeadingElement>(null);
     const advantageRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -35,11 +32,9 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
     const isTouchDevice = useAppSelector(state => state.device.deviceType === 'touchDevice');
     const isMin600Width = useMediaQuery('(min-width:600px)');
 
-    const isContentReady = useAppSelector(state => state.gsapState.isContentReady)
-    console.log('isContentReady',isContentReady)
     useGSAP(() => {
         if (advantagesTitle.current) {
-            gsap.set(advantagesTitle.current, { opacity: 0, y: 20 });
+            gsap.set(advantagesTitle.current, {opacity: 0, y: 20});
         }
 
         advantageRefs.current.forEach((blockRef, index) => {
@@ -49,8 +44,8 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                 const textElement = blockRef.children[1];
 
                 // Скрываем элементы мгновенно
-                gsap.set(imageElement, { opacity: 0, x: isImageOnLeft ? -200 : 200 });
-                gsap.set(textElement, { opacity: 0, x: isImageOnLeft ? 100 : -100, y: 100 });
+                gsap.set(imageElement, {opacity: 0, x: isImageOnLeft ? -200 : 200});
+                gsap.set(textElement, {opacity: 0, x: isImageOnLeft ? 100 : -100, y: 100});
             }
         });
 
@@ -83,7 +78,7 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: imageElement,
-                        start: `${!isMin600Width? 'top 40%' : 'top 85%'}`,
+                        start: `${!isMin600Width ? 'top 40%' : 'top 85%'}`,
                         end: 'top 55%',
                         scrub: !isTouchDevice,
                     }
@@ -98,14 +93,14 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: imageElement,
-                        start: `${!isMin600Width? 'top 40%' : 'top 85%'}`,
+                        start: `${!isMin600Width ? 'top 40%' : 'top 85%'}`,
                         end: 'top 55%',
                         scrub: !isTouchDevice,
                     }
                 });
             }
         });
-    }, { scope: advantagesSection });
+    }, {scope: advantagesSection});
 
     return (
         <StyledAdvantagesSection
@@ -113,7 +108,7 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
             ref={advantagesSection}
         >
             <StyledTitle variant="h2" ref={advantagesTitle}>
-                Мои преимущества
+                ADVANTAGES
             </StyledTitle>
 
             <Box>
@@ -126,7 +121,10 @@ const AdvantagesSection = ({ id }: IAdvantagesSectionProps) => {
                             ref={(el: HTMLDivElement | null) => (advantageRefs.current[index] = el)}
                             isImageOnLeft={isImageOnLeft}
                         >
-                            <StyledImageBlock picture={block.picture} isImageOnLeft={isImageOnLeft} />
+                            <StyledImageBlock
+                                picture={block.picture}
+                                isImageOnLeft={isImageOnLeft}
+                            />
 
                             <StyledTextContainer isImageOnLeft={isImageOnLeft}>
                                 <StyledBlockTitle variant="h3">

@@ -13,7 +13,7 @@ import {
     ScrollableContent,
     InfoBlock,
     PhotoContainer,
-    Photo,
+    Photo, NameTypography,
 } from "./Styled.tsx";
 
 interface AboutMeSectionProps {
@@ -194,25 +194,19 @@ const AboutMeSection = ({id}: AboutMeSectionProps) => {
                 maxWidth="lg"
             >
                 <AboutMeTitle
-                    variant="h1"
+                    variant="h2"
                     ref={titleRef}
                 >
-                    АВТОР
+                    ABOUT ME
                 </AboutMeTitle>
                 <ContentWrapper>
                     <TextContent>
-                        <Typography
+                        <NameTypography
                             ref={nameRef}
                             variant={isSmallMobile ? "h4" : "h3"}
-                            sx={{
-                                fontWeight: 'bold',
-                                color: 'primary.main',
-                                mb: 1,
-                                opacity: '0',
-                            }}
                         >
                             Сергей Михайлович
-                        </Typography>
+                        </NameTypography>
 
                         <Typography
                             ref={descriptionRef}
@@ -266,7 +260,7 @@ const AboutMeSection = ({id}: AboutMeSectionProps) => {
                         <Photo
                             ref={photoRef}
                             src={AboutMePhoto}
-                            alt="Мария Иванова - репетитор английского языка"
+                            alt="Сергей Михайлович - репетитор английского языка"
                         />
                     </PhotoContainer>
                 </ContentWrapper>

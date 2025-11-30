@@ -39,6 +39,9 @@ export const ReviewText = styled(Typography)(({theme}) => ({
     color: theme.palette.text.secondary,
     margin: '0 auto',
     textAlign: 'justify',
+    [theme.breakpoints.down('sm')]: {
+        textAlign: 'left',
+    },
 }));
 
 export const ReviewAvatar = styled(Avatar)(({theme}) => ({

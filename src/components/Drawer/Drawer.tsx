@@ -1,14 +1,10 @@
 import React from 'react';
-import {Drawer, Box, IconButton, List, ListItem, ListItemText} from '@mui/material';
+import {Drawer, Box, IconButton, List, ListItem, ListItemText, Tooltip} from '@mui/material';
 import {Close} from '@mui/icons-material';
 import {useAppDispatch, useAppSelector} from '../../store/store';
 import {closeDrawer} from './../../store/drawerSlice';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import EmailIcon from '@mui/icons-material/Email';
 import {gsap} from "gsap";
-import {buttons} from "../../description.ts";
+import {buttons, contacts} from "../../description.ts";
 
 const TopDrawer: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -19,24 +15,6 @@ const TopDrawer: React.FC = () => {
     };
 
 
-    // Контакты
-    const contacts = [
-        {
-            icon: <TelegramIcon/>,
-            color: '#0088cc',
-            label: 'Telegram',
-            // url: `https://t.me/${'fd'}?text=${'Здраствуйте хотел бы с вами начать заниматься, когда можно будет провести пробное занятие?'}`
-        },
-        {icon: <WhatsAppIcon/>, color: '#25D366', label: 'WhatsApp',
-            // url: 'https://wa.me/544545'
-        },
-        {icon: <EmailIcon/>, color: '#eadb35', label: 'Email',
-            // url: 'kirillrublik@yandex.ru'
-        },
-        {icon: <InstagramIcon/>, color: '#E1306C', label: 'Instagram',
-            // url: 'https://instagram.com/yourusername'
-        },
-    ];
 
     const handleNavigation = (targetId: string) => {
         // Здесь можно добавить логику навигации
@@ -160,24 +138,21 @@ const TopDrawer: React.FC = () => {
                     flexWrap: 'wrap',
                     borderTop: '1px solid rgba(255,255,255,0.1)',
                 }}>
-                    {contacts.map((contact, index) => (
-                        <IconButton
-                            key={index}
-                            size="large"
-                            // onClick={() => handleContactClick(contact.url)}
-                            sx={{
-                                transition: 'all 0.3s ease',
-                                '&:hover': {
-                                    backgroundColor: 'transparent',
-                                    transform: 'scale(1.2)',
-                                    color: `${contact.color}`
-                                },
-
-                            }}
-                            aria-label={contact.label}
-                        >
-                            {contact.icon}
-                        </IconButton>
+                    {contacts.map(({icon: Icon, title, action, color}) => (
+                        <Tooltip key={title} title={title} arrow>
+                            <Icon
+                                fontSize="large"
+                                onClick={action}
+                                sx={{
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.2)',
+                                        color: color,
+                                    }
+                                }}
+                            />
+                        </Tooltip>
                     ))}
                 </Box>
             </Box>

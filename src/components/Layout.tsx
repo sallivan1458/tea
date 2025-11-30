@@ -9,6 +9,7 @@ import CursorFollower from "components/Background/CursorFollower.tsx";
 import TopDrawer from "components/Drawer/Drawer.tsx";
 import {useGsapSmoother} from "../hooks/useGsapSmoother";
 import BackgroundWithCircles, {AnimatedBackground} from "components/Background/StyledBackground.tsx";
+import {Box} from "@mui/material";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
@@ -27,7 +28,11 @@ const Layout = () => {
 
 
     return (
-        <>
+        <Box
+            sx={{
+                overflowX: isTouchDevice ? 'hidden' : 'visible',
+            }}
+        >
             {!isTouchDevice
                 ? <BackgroundWithCircles/>
                 : <AnimatedBackground/>}
@@ -44,7 +49,7 @@ const Layout = () => {
             ) : (
                 <Outlet/>
             )}
-        </>
+        </Box>
     );
 };
 

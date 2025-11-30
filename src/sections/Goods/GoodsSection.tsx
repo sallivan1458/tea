@@ -39,7 +39,7 @@ const GoodsSection = ({id}: IEducationSectionProps) => {
             y: 0,
             scrollTrigger: {
                 trigger: educationSection.current,
-                start: '-30% center',
+                start: '-35% center',
                 end: '-15% center',
                 scrub: !isTouchDevice,
             }

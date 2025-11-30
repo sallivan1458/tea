@@ -73,7 +73,7 @@ const ReviewsSection = ({ id }: IReviewsSectionProps) => {
                 variant="h2"
                 ref={reviewTitle}
             >
-                Отзывы
+                REVIEWS
             </StyledReviewTitle>
             <StyledReviewsSlider
                 ref={reviewsSlider}
