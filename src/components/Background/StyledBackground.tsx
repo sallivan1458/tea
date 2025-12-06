@@ -55,9 +55,9 @@ export const AnimatedBackground = styled(Box)(() => ({
 const BackgroundWithCircles = () => (
     <AnimatedBackground>
         {/*<AnimatedCircle size="0%" positionX={100} positionY={100} color="rgba(230, 152, 61, 0.8)" duration={40}/>*/}
-        <AnimatedCircle size="250%" positionX={0} positionY={0} color="rgba(100, 100, 255, 0.15)" duration={35} />
-        <AnimatedCircle size="80%" positionX={80} positionY={20} color="rgba(200, 255, 150, 0.05)" duration={45} />
-        <AnimatedCircle size="285%" positionX={100} positionY={100} color="rgba(255, 150, 200, 0.15)" duration={30}  />
+        <AnimatedCircle size="250%" positionX={0} positionY={0} color="rgba(100, 100, 255, 0.25)" duration={50} />
+        <AnimatedCircle size="80%" positionX={80} positionY={20} color="rgba(200, 255, 150, 0.05)" duration={55} />
+        <AnimatedCircle size="285%" positionX={100} positionY={100} color="rgba(255, 150, 200, 0.15)" duration={45}  />
     </AnimatedBackground>
 );
 

@@ -105,14 +105,17 @@ export const CardGoods = ({
                     sx={{
                         color: 'white',
                         backgroundColor: 'rgb(18,141,223)',
-                        transform: `${!expanded ? 'rotate(0deg)' : `rotate(45deg)`}`,
-                        transition: 'transform 0.5s ease-in-out 0.2s',
                         '&:hover': {
                             backgroundColor: 'rgb(14,66,124)',
                         },
                     }}
                 >
-                    <AddIcon/>
+                    <AddIcon
+                        sx={{
+                            transform: !expanded ? 'rotate(0deg)' : 'rotate(45deg)',
+                            transition: 'transform 0.5s ease-in-out',
+                        }}
+                    />
                 </IconButton>
             </Box>
 

@@ -20,7 +20,7 @@ export const AboutMeContainer = styled(Box)({
         transform: 'translateX(-50%)',
         width: '100vw',
         height: 'calc(var(--vh, 1vh) * 100)',
-        background: 'linear-gradient(to bottom, #010101 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #000000 0%, transparent 100%)',
         zIndex: -1,
         pointerEvents: 'none',
     },

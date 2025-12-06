@@ -11,7 +11,7 @@ export const StyledGreetingSection = styled(Box)({
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundColor: '#010101',
+        backgroundColor: '#000000',
         zIndex: -1,
     },
     '&::after': {
@@ -21,7 +21,7 @@ export const StyledGreetingSection = styled(Box)({
         left: 0,
         width: '100vw',
         height: 'calc(var(--vh, 1vh) * 50)',
-        background: 'linear-gradient(to top, #010101, transparent)',
+        background: 'linear-gradient(to top, #000000, transparent)',
         zIndex: 0,
     }
 });
@@ -91,7 +91,7 @@ export const StyledAdditionalBox = styled(Box)({
         transform:'translateX(-50%)',
         width: '100vw',
         height: 'calc(var(--vh, 1vh) * 30)',
-        background: '#010101',
+        background: '#000000',
         zIndex: -1,
         pointerEvents: 'none',
     },

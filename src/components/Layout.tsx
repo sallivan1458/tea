@@ -10,6 +10,7 @@ import TopDrawer from "components/Drawer/Drawer.tsx";
 import {useGsapSmoother} from "../hooks/useGsapSmoother";
 import BackgroundWithCircles, {AnimatedBackground} from "components/Background/StyledBackground.tsx";
 import {Box} from "@mui/material";
+import {GlassFilterSVG} from "components/GlassFilter/GlassFilter.tsx";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
@@ -33,6 +34,7 @@ const Layout = () => {
                 overflowX: isTouchDevice ? 'hidden' : 'visible',
             }}
         >
+            <GlassFilterSVG/>
             {!isTouchDevice
                 ? <BackgroundWithCircles/>
                 : <AnimatedBackground/>}

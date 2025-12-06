@@ -9,7 +9,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {setActiveSection, setContentReady} from "../../store/gsapSlice.ts";
 import {useEffect, useLayoutEffect, useRef} from "react";
 import {useGSAP} from "@gsap/react";
-import {Container} from "@mui/material";
+import { Container} from "@mui/material";
 import AboutMeSection from "../../sections/AboutMeSection/AboutMeSection.tsx";
 import {setLoading} from "../../store/LoadingState.ts";
 import {scrollSections, SectionId} from "../../description.ts";
