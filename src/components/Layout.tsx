@@ -5,7 +5,7 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {useRef} from "react";
 import {useAppSelector} from "../store/store.ts";
 import {gsap} from 'gsap'
-import CursorFollower from "components/Background/CursorFollower.tsx";
+// import CursorFollower from "components/Background/CursorFollower.tsx";
 import TopDrawer from "components/Drawer/Drawer.tsx";
 import {useGsapSmoother} from "../hooks/useGsapSmoother";
 import BackgroundWithCircles, {AnimatedBackground} from "components/Background/StyledBackground.tsx";
@@ -38,7 +38,7 @@ const Layout = () => {
             {!isTouchDevice
                 ? <BackgroundWithCircles/>
                 : <AnimatedBackground/>}
-            {!isTouchDevice && <CursorFollower/>}
+            {/*{!isTouchDevice && <CursorFollower/>}*/}
             <TopDrawer/>
             <NavigateSection/>
 

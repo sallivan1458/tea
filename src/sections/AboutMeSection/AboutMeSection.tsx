@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import {useGSAP} from '@gsap/react';
 
 import AboutMePhoto from '../../assets/aboutMePhoto.webp';
+// import AboutMePhoto from '../../assets/IMG_0658.png';
 import {useAppSelector} from "../../store/store.ts";
 import {
     AboutMeContainer,
@@ -13,8 +14,9 @@ import {
     ScrollableContent,
     InfoBlock,
     PhotoContainer,
-    Photo, NameTypography,
+    Photo, NameTypography, PhotoWrapper,
 } from "./Styled.tsx";
+import {infoBlocks} from "../../description.ts";
 
 interface AboutMeSectionProps {
     id: string;
@@ -55,7 +57,7 @@ const AboutMeSection = ({id}: AboutMeSectionProps) => {
         //         trigger: sectionRef.current,
         //         start: 'top 80%',
         //         end: 'top 50%',
-        //         toggleActions: 'play none none reverse',
+        //         toggleActions: 'play none reverse',
         //         scrub: !isTouchDevice,
         //     }
         // });
@@ -72,6 +74,51 @@ const AboutMeSection = ({id}: AboutMeSectionProps) => {
         //     duration: 1,
         //     ease: 'power3.out'
         // });
+
+
+        // tl.fromTo(photoRef.current, {
+        //     opacity: 0,
+        //     scale: 0.8,
+        //     rotationY: -30,
+        // }, {
+        //     opacity: 1,
+        //     scale: 1,
+        //     rotationY: 0,
+        //     duration: 1,
+        //     ease: 'power3.out'
+        // });
+
+        // const tl = gsap.timeline();
+        // tl.fromTo(photoRef.current, {
+        //     opacity: 0,
+        //     scale: 0.85,
+        // }, {
+        //     opacity: 1,
+        //     scale: 1,
+        //     duration: 1,
+        //     ease: 'power3.out',
+        //     scrollTrigger: {
+        //         trigger: sectionRef.current,
+        //         start: '-10% center',
+        //         end: '5% center',
+        //         scrub: !isTouchDevice,
+        //     }
+        // }).fromTo(fogPhotoRef.current, {
+        //     opacity: 0,
+        //     scale: 0.35,
+        // }, {
+        //     opacity: 1,
+        //     scale: 1,
+        //     duration: 1.5,
+        //     ease: 'power3.out',
+        //     scrollTrigger: {
+        //         trigger: sectionRef.current,
+        //         start: '30% center',
+        //         end: '55% center',
+        //         scrub: !isTouchDevice,
+        //     }
+        // }, "-=0.5");
+
         gsap.fromTo(photoRef.current, {
             opacity: 0,
             scale: 0.85,
@@ -163,21 +210,6 @@ const AboutMeSection = ({id}: AboutMeSectionProps) => {
 
     }, {scope: sectionRef, dependencies: [isMobile]});
 
-    // Данные для блоков информации
-    const infoBlocks = [
-        {
-            title: 'Опыт работы',
-            content: '5+ лет преподавания английского языка студентам разных уровней и возрастов'
-        },
-        {
-            title: 'Специализация',
-            content: 'Разговорный английский, бизнес-английский, подготовка к экзаменам'
-        },
-        {
-            title: 'Образование',
-            content: 'Закончил ФРГФ и учился по программе обмена в Китайском университете'
-        }
-    ];
 
     const addToInfoBlocksRef = (el: HTMLDivElement | null) => {
         if (el && !infoBlocksRef.current.includes(el)) {
@@ -256,13 +288,19 @@ const AboutMeSection = ({id}: AboutMeSectionProps) => {
                     </TextContent>
 
                     {/* Фото */}
-                    <PhotoContainer>
-                        <Photo
+                    <PhotoWrapper>
+
+                        <PhotoContainer
                             ref={photoRef}
-                            src={AboutMePhoto}
-                            alt="Сергей Михайлович - репетитор английского языка"
-                        />
-                    </PhotoContainer>
+
+                        >
+                            <Photo
+                                src={AboutMePhoto}
+                                alt="Сергей Михайлович - репетитор английского языка"
+                            />
+                        </PhotoContainer>
+                    </PhotoWrapper>
+
                 </ContentWrapper>
             </Container>
         </AboutMeContainer>

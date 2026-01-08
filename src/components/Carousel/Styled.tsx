@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 export const EmblaContainer = styled(Box)(() => ({
     width: '100%',
     margin: 'auto',
-    '--slide-height': '500px',
+    '--slide-height': '100%',
     '--slide-spacing': '1rem',
     '--slide-size': '100%',
 }));

@@ -13,7 +13,7 @@ import {
 } from "components/CardReview/Styled.tsx";
 
 interface ReviewCardProps {
-    image: string;
+    image: string | undefined;
     name: string;
     text: string;
     date: string;
@@ -41,10 +41,13 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
                         {name}
                     </Typography>
                 </ReviewInfo>
-                <ReviewAvatar
-                    src={image}
-                    alt={name}
-                />
+                {image !== undefined && (
+                    <ReviewAvatar
+                        src={image}
+                        alt={name}
+                    />
+                )}
+
             </ReviewHeader>
 
             <ReviewContent>

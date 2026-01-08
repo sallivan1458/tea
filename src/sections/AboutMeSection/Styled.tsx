@@ -69,14 +69,21 @@ export const NameTypography = styled(Typography)({
     opacity: '0',
 });
 
+export const PhotoWrapper = styled(Box)({
+    flex: 3,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+});
 
 export const PhotoContainer = styled(Box)({
-    flex: 3,
     position: 'relative',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
+    height: '100%',
+
     '&::after': {
         content: '""',
         position: 'absolute',
@@ -84,7 +91,21 @@ export const PhotoContainer = styled(Box)({
         left: '-8%',
         right: '-8%',
         height: '100%',
-        background: 'linear-gradient(to top, rgba(25,118,210,0.09) 5%,  transparent 80%)',
+        background: 'linear-gradient(to top, rgba(25,118,210,0.09) 45%,  transparent 90%)',
+        borderRadius: '50%',
+        filter: 'blur(8px)',
+        pointerEvents: 'none',
+        zIndex: 1,
+    },
+    '&::before': {
+        content: '""',
+        position: 'absolute',
+        bottom: '0%',
+        left: '-8%',
+        right: '-8%',
+        height: '100%',
+        color:'rgba(190,120,255,0.6)',
+        background: 'radial-gradient(circle at center, rgba(190,120,255,0.6) 0%, transparent 70%)',
         borderRadius: '50%',
         filter: 'blur(8px)',
         pointerEvents: 'none',
@@ -95,9 +116,8 @@ export const PhotoContainer = styled(Box)({
 export const Photo = styled('img')(({theme}) => ({
     height: 'auto',
     maxHeight: '500px',
-    borderRadius: '20px',
+    borderRadius: '100px',
     objectFit: 'contain',
-    opacity: '0',
     width: '100%',
     position: 'relative',
     zIndex: 2,

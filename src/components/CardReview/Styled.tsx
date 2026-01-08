@@ -3,7 +3,7 @@ import {Avatar, Box, Typography} from "@mui/material";
 
 export const StyledCard = styled(Box)(({theme}) => ({
     width: '100%',
-    height: '100%',
+    minHeight: '100%',
     padding: theme.spacing(3),
     display: 'flex',
     flexDirection: 'column',
@@ -39,8 +39,10 @@ export const ReviewText = styled(Typography)(({theme}) => ({
     color: theme.palette.text.secondary,
     margin: '0 auto',
     textAlign: 'justify',
+    fontSize: '22px',
     [theme.breakpoints.down('sm')]: {
         textAlign: 'left',
+        fontSize: '16px',
     },
 }));
 

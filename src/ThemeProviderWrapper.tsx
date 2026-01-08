@@ -34,7 +34,10 @@ export const ThemeProviderWrapper = ({ children }: ThemeProviderWrapperProps) =>
                     fontSize: 14,
                     // fontFamily: "'Playfair Display'",
                     // fontFamily: "'Playfair Display'",
-                    fontFamily: "Inter",
+                    // fontFamily: "Inter",
+                    fontFamily: "Monserrat, sans-serif",
+                    // fontFamily: "Roboto Flexible, sans-serif",
+
                     h1: {
                         fontFamily: "'Playfair Display'",
                         fontWeight: 800,

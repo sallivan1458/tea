@@ -299,6 +299,9 @@ const Loader = ({
             ref={containerRef}
             id={'loaderContainer'}
             className={loadingState === 'lastSecond' ? 'fade-out' : ''}
+            sx={{
+                backgroundColor: isMobileDevice? '#000000' : '#010103',
+            }}
         >
             {/* Показываем видео только на десктопе */}
             {!isMobileDevice ? (
@@ -341,7 +344,7 @@ const Loader = ({
                 : (
                     <VideoContainer>
                         <ImgBackground
-                            ref={imgRef} // Добавляем ref для анимации
+                            ref={imgRef}
                             src={TEALogoWEBP}
                         />
                     </VideoContainer>

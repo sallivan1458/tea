@@ -79,7 +79,7 @@ const AdvantagesSection = ({id}: IAdvantagesSectionProps) => {
                     scrollTrigger: {
                         trigger: imageElement,
                         start: `${!isMin600Width ? 'top 40%' : 'top 85%'}`,
-                        end: 'top 55%',
+                        end: `${!isMin600Width ? 'top 10%' : 'top 55%'}`,
                         scrub: !isTouchDevice,
                     }
                 });
@@ -94,7 +94,7 @@ const AdvantagesSection = ({id}: IAdvantagesSectionProps) => {
                     scrollTrigger: {
                         trigger: imageElement,
                         start: `${!isMin600Width ? 'top 40%' : 'top 85%'}`,
-                        end: 'top 55%',
+                        end: `${!isMin600Width ? 'top 10%' : 'top 55%'}`,
                         scrub: !isTouchDevice,
                     }
                 });

@@ -20,7 +20,7 @@ export const LoaderContainer = styled(Box)(({ theme }) => ({
     left: 0,
     width: '100vw',
     height: '100lvh',
-    background: '#000000',
+    background: '#010103',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

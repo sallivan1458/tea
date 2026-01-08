@@ -1,9 +1,6 @@
 import standartTEA from "./assets/standardTEA.webp";
 import personalTEA from "./assets/personalTEA.webp";
 import examTEA from "./assets/examTEA.webp";
-import DimaZvedov from "./assets/standardTEA.webp";
-import MihailBardashPNG from "./assets/personalTEA.webp";
-import bogdanJPG from "./assets/bogomDAN.jpg";
 import indApprWEBP from "./assets/IndividualApproach.webp";
 import speakingWEBP from "./assets/conversationalPractice.webp";
 import platformWEBP from "./assets/platform.webp";
@@ -19,7 +16,7 @@ export interface CardGoodsProps {
 }
 export const goods: CardGoodsProps[] = [
     {
-        price: 1500,
+        price: 2000,
         text: [
             'Разговорная практика и преодоление языкового барьера',
             'Пополнение словарного запаса по бытовым темам',
@@ -30,25 +27,23 @@ export const goods: CardGoodsProps[] = [
         image: standartTEA
     },
     {
-        price: 2000,
+        price: 2500,
         text: [
             'Индивидуальная программа под ваши цели и интересы',
             'Разговорная практика и преодоление языкового барьера',
-            'Пополнение словарного запаса по бытовым темам',
-            'Аудирование и понимание ньюансов английской речи',
-            'Чтение и обсуждение текстов',
+            'Углубленное изучение нюансов языка',
+            'Структурирование знаний лексики и грамматики',
         ],
         title: 'PersonalTEA',
         image: personalTEA
     },
     {
-        price: 1200,
+        price: 1500,
         text: [
             'Отработка форматов ОГЭ, ЕГЭ',
             'Разбор ошибок и сложных моментов',
             'Практика всех разделов: Listening, Reading, Writing, Speaking',
             'Пробные тесты с детальным анализом',
-            'Уверенность перед экзаменом',
         ],
         title: 'ExamTEA',
         image: examTEA
@@ -78,43 +73,24 @@ export interface IReview {
     title: string;
     description: string;
     date: string;
-    image: string;
+    image: string | undefined;
 }
 export const reviews: IReview[] = [
     {
         id: '1',
-        title: 'Dima',
-        description: 'Стандартный урок английского языка, охватывающий все аспекты: грамматику, лексику, аудирование и разговорную практику.',
-        image: DimaZvedov,
-        date: '1755873602612'
+        title: 'Алексей',
+        description: 'Занимаюсь с Сергеем уже 5 месяцев и я заметил прогресс в моём английском.  Записался на занятие, чтобы укрепить свой уровень на крепком B2. Понравилось, что преподаватель подстраивает манеру речи и темы занятий под  ученика и его запросы. Несмотря на специфической порой юмор, очень хорошо всё объясняет и старается сделать занятие интересным. Сейчас я уже вижу свои ошибки, когда пишу, и стараюсь их исправлять. Рекомендую его всем, кто хочет прокачать свой английский',
+        image: undefined,
+        date: '1766692800000'
     },
-    {
-        id: '2',
-        title: 'Mihail',
-        description: 'Персональный урок, разработанный специально под ваши цели и потребности. Индивидуальный подход и фокус на конкретных темах.',
-        image: MihailBardashPNG,
-        date: '1755873602612'
-    },
-    {
-        id: '3',
-        title: 'Vladimir',
-        description: 'Специализированная подготовка к экзаменам ОГЭ, ЕГЭ, IELTS или TOEFL. Прорабатываем экзаменационные стратегии и типовые задания.',
-        image: examTEA,
-        date: '1755873602612'
-    }, {
-        id: '4',
-        title: 'Bogdan',
-        description: 'Описание совершенного урока номер 4, не очень большое колличество текста',
-        image: bogdanJPG,
-        date: '1755873602612'
-    },
-    {
-        id: '5',
-        title: 'Kirill',
-        description: 'Описание совершенного урока номер 5, не очень большое колличество текста',
-        image: standartTEA,
-        date: '1755873602612'
-    }
+    // {
+    //     id: '2',
+    //     title: 'Артем',
+    //     description: 'Взаимно, Серёг! я тоже очень рад этому году, по мне так вышло продуктивно - в прошлый нг я не мог смотреть фильмы с английскими сабами вообще, а теперь уже могу не ждать ебучего перевода и смотреть в ориджинале, хотя, не всё пойму, конечно, но уже дохуя) и самое главное - что я хочу дальше прокачивать английский, это единственное, к чему у меня не падает мотивация)) Поэтому, спасибо тебе большое! Надеюсь, Дед Мороз принесёт тебе чего-то хорошего, но я бы особо не доверял, учитывая то, чем деды могут заниматься с мальчиками, уж я-то знаю😄 а вообще, ты охуенный учитель и человек, Серёг)',
+    //     image: undefined,
+    //     date: '1766779200000'
+    // },
+
 ];
 
 
@@ -173,20 +149,48 @@ export const scrollSections = Object.values(SectionId);
 export const contacts = [
     {
         icon: WhatsAppIcon,
-        title: 'Написать в WhatsApp',
-        action: () => window.open('https://wa.me/12341234'),
+        title: 'Написать в WhatsApp Business',
+        action: () => {
+            const phoneNumber = '89677388426';
+            const message = 'Здравствуйте! Хотел бы с вами начать заниматься, когда можно будет провести пробное занятие?';
+            const encodedMessage = encodeURIComponent(message);
+
+            // Специальный URL для WhatsApp Business
+            window.open(`https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${encodedMessage}&type=phone_number&app_absent=0`);
+        },
         color: '#25D366'
     },
     {
         icon: TelegramIcon,
         title: 'Написать в Telegram',
-        action: () => window.open(`https://t.me/${'12341234'}?text=${'Здраствуйте хотел бы с вами начать заниматься, когда можно будет провести пробное занятие?'}`),
+        action: () => {
+            const username = 'LermadoExpunso';
+            const message = 'Здравствуйте! Хотел бы с вами начать заниматься, когда можно будет провести ознакомительное занятие?';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://t.me/${username}?text=${encodedMessage}`);
+        },
         color: '#0088cc'
-    },
+    }
     // {
     //     icon: MailIcon,
     //     title: 'Написать на почту',
     //     action: () => window.open('mailto:your@email.com'),
     //     color: '#eadb35'
     // }
+];
+
+
+export const infoBlocks = [
+    {
+        title: 'Опыт работы',
+        content: '5+ лет преподавания английского языка студентам разных уровней и возрастов'
+    },
+    {
+        title: 'Специализация',
+        content: 'Разговорный английский, бизнес-английский, подготовка к экзаменам'
+    },
+    {
+        title: 'Образование',
+        content: 'Закончил ФРГФ и учился по программе обмена в Китайском университете'
+    }
 ];

@@ -22,7 +22,7 @@ export const GoodsContent = styled(Box)(({ theme }) => ({
     position: 'relative',
     padding: '20px 0',
     willChange: 'transform',
-    overflow: 'hidden',
+    // overflow: 'hidden',
 
     [theme.breakpoints.up('md')]: {
         justifyContent: 'flex-start',
@@ -31,8 +31,8 @@ export const GoodsContent = styled(Box)(({ theme }) => ({
 
 export const GoodsScrollContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
-    gap: '24px',
-    padding: '10px 20px',
+    gap: '36px',
+    padding: '30px 20px',
     overflowX: 'auto',
     scrollBehavior: 'smooth',
     scrollbarWidth: 'none',
@@ -46,7 +46,7 @@ export const GoodsScrollContainer = styled(Box)(({ theme }) => ({
         overflowX: 'visible',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '10px 0',
+        padding: '30px 10px',
         gap: '48px',
     },
 }));
@@ -59,7 +59,6 @@ export const GoodsBlock = styled(Box)(({ theme }) => ({
     width: 'auto',
     flex: '0 0 auto',
     willChange: 'opacity, transform',
-
     [theme.breakpoints.up('md')]: {
         flex: '1 1 300px',
         maxWidth: '350px',
